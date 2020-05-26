@@ -12,7 +12,12 @@ namespace CNW_WebBanQuanAo.Controllers
         MyContext context = new MyContext();
         public ActionResult Index()
         {
-            return View();
+            //var model = context.MATHANG.Where(x => x.TenMH != null).ToList();
+            //return View(model);
+
+            var model = context.MATHANG.Where(x => x.MaMH != null).ToList();
+
+            return View(model);
         }
 
         public ActionResult About()
