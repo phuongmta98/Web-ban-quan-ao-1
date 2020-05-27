@@ -80,3 +80,7 @@ D:\source\repos\CNW_WebBanQuanAo\CNW_WebBanQuanAo\obj\Debug\CNW_WebBanQuanAo.csp
 D:\source\repos\CNW_WebBanQuanAo\CNW_WebBanQuanAo\obj\Debug\CNW_WebBanQuanAo.csproj.CopyComplete
 D:\source\repos\CNW_WebBanQuanAo\CNW_WebBanQuanAo\obj\Debug\CNW_WebBanQuanAo.dll
 D:\source\repos\CNW_WebBanQuanAo\CNW_WebBanQuanAo\obj\Debug\CNW_WebBanQuanAo.pdb
+D:\source\repos\CNW_WebBanQuanAo\CNW_WebBanQuanAo\bin\PagedList.dll
+D:\source\repos\CNW_WebBanQuanAo\CNW_WebBanQuanAo\bin\PagedList.Mvc.dll
+D:\source\repos\CNW_WebBanQuanAo\CNW_WebBanQuanAo\bin\PagedList.xml
+D:\source\repos\CNW_WebBanQuanAo\CNW_WebBanQuanAo\bin\PagedList.Mvc.xml

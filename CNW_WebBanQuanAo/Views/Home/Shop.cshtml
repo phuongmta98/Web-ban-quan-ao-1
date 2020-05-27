@@ -2,9 +2,12 @@
     ViewBag.Title = "Shop";
 }
 
-@using CNW3_1.Models;
+@using CNW_WebBanQuanAo.Models;
+@model PagedList.IPagedList<CNW_WebBanQuanAo.Models.MATHANG>
+@using PagedList.Mvc;
 
-@model IEnumerable<MATHANG>
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@*@model IEnumerable<MATHANG>*@
 
 <section id="advertisement">
     <div class="container">
@@ -15,23 +18,31 @@
 <section>
     <div class="container">
         <div class="row">
-
-            @*@Html.Partial("~/Views/_LeftMenu.cshtml")*@
-            @*@{ Html.RenderPartial("~/Views/_LeftMenu.cshtml"); }*@
             @Html.Action("LeftMenu")
 
             <div class="col-sm-9 padding-right">
                 <div class="features_items">
                     <!--features_items-->
                     <h2 class="title text-center">Sản phẩm đang bán</h2>
-
+                    <div>
+                        <span>Ưu tiên xem: </span>
+                        <ul>
+                            <li class="right-item">
+                                @Html.ActionLink("GIÁ THẤP", "Shop", new { SortOrder = "asc" })
+                            </li>
+                            <li class="right-item">
+                                @Html.ActionLink("GIÁ CAO", "Shop", new { SortOrder = "desc" })
+                            </li>
+                            <li class="right-item"><a>BÁN CHẠY</a></li>
+                        </ul>
+                    </div>
                     @foreach (MATHANG it in Model)
                     {
                         <div class="col-sm-4">
                             <div class="product-image-wrapper">
                                 <div class="single-products">
                                     <div class="productinfo text-center">
-                                        <img src="~/Content/images/shop/product12.jpg" alt="" />
+                                        <img src="~/Content/images/sanpham/@it.UrlAnh" alt="" />
                                         <h2>@it.GiaBan ₫</h2>
                                         <p>@it.TenMH</p>
                                         <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
@@ -53,13 +64,11 @@
                             </div>
                         </div>
                     }
+                    <br />
+                    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) trên @Model.PageCount
 
-                    <ul class="pagination">
-                        <li class="active"><a href="">1</a></li>
-                        <li><a href="">2</a></li>
-                        <li><a href="">3</a></li>
-                        <li><a href="">&raquo;</a></li>
-                    </ul>
+                    @Html.PagedListPager(Model, page => Url.Action("Shop",
+                        new { page, sortOrder = ViewBag.CurrentSort}))
                 </div><!--features_items-->
             </div>
         </div>

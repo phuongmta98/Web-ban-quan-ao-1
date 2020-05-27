@@ -1,4 +1,5 @@
 ﻿using CNW_WebBanQuanAo.Models;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,10 +39,39 @@ namespace CNW_WebBanQuanAo.Controllers
 
             return View();
         }
-        public ActionResult Shop()
+        public ActionResult Shop(string sortOrder, string searchString, int? page)
         {
-            var model = context.MATHANG.Where(x => x.TenMH != null).ToList();
-            return View(model);
+            ViewBag.CurrentSort = sortOrder;
+            var model = from m in context.MATHANG select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                model = model.Where(s => s.TenMH.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "asc":
+                    model = model.OrderBy(s => s.GiaBan);
+                    break;
+                case "desc":
+                    model = model.OrderByDescending(s => s.GiaBan);
+                    break;
+                default:
+                    model = model.OrderBy(s => s.TenMH);
+                    break;
+            }
+
+            int pageSize = 6;
+            int pageIndex = 1;
+
+            pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
+            IPagedList<MATHANG> mh = null;
+
+            //model.OrderBy(s => s.GiaBan).Skip(pageIndex * pageSize).Take(pageSize);
+            mh = model.ToPagedList(pageIndex, pageSize);
+
+            return View(mh);
         }
 
         public ActionResult Checkout()
