@@ -27,18 +27,33 @@ namespace CNW_WebBanQuanAo.Controllers
 
             return View();
         }
+
         public ActionResult Login()
         {
             ViewBag.Message = "User logins theirs account";
+            string username = Request.Form["username"];
+            string password = Request.Form["password"];
+
+            Console.WriteLine(username + password);
+
+            if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
+            {
+                var user = context.TAIKHOAN.Where(m => m.Username.Equals(username) && m.Password.Equals(password)).ToList();
+                if (user.Count != 0)
+                {
+                    Response.Write("Dang nhap thanh cong");
+                }
+            }
 
             return View();
         }
-        public ActionResult Cart()
-        {
-            ViewBag.Message = "User checks theirs cart";
 
-            return View();
-        }
+        //[HttpPost]
+        //public ActionResult Login()
+        //{
+
+        //    return View();
+        //}
         public ActionResult Shop(string sortOrder, string searchString, int? page)
         {
             ViewBag.CurrentSort = sortOrder;

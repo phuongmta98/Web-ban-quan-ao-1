@@ -136,14 +136,17 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\SANPHAMController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ANH.cs" />
+    <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\GIAODICH.cs" />
     <Compile Include="Models\GIOHANG.cs" />
     <Compile Include="Models\HOADON.cs" />
+    <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\MATHANG.cs" />
     <Compile Include="Models\MAU.cs" />
     <Compile Include="Models\MyContext.cs" />
@@ -298,7 +301,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Cart.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Home\Checkout.cshtml" />
     <Content Include="Views\Home\Detail.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />

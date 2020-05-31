@@ -87,13 +87,13 @@
                                             <img src="~/Content/images/sanpham/@Model[i].UrlAnh" />
                                             <h2>@Model[i].GiaBan ₫</h2>
                                             <p>@Model[i].TenMH</p>
-                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                            <span href="" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>@Html.ActionLink("Thêm vào giỏ", "AddItem", "Cart", new { id = Model[i].MaMH, returnURL = Request.Url.AbsoluteUri }, null)</span>
                                         </div>
                                         <div class="product-overlay">
                                             <div class="overlay-content">
                                                 <h2>@Model[i].GiaBan ₫</h2>
                                                 <p>@Model[i].TenMH</p>
-                                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                                <span href="" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>@Html.ActionLink("Thêm vào giỏ", "AddItem", "Cart", new { id = Model[i].MaMH, returnURL = Request.Url.AbsoluteUri }, null)</span>
                                             </div>
                                         </div>
                                     </div>
