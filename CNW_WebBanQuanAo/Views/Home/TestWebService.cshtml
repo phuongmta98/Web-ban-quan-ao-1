@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "TestWebService";
+}
+
+<h2>TestWebService</h2>
+
+@using CNW_WebBanQuanAo.Models;
+@model List<MAU>
+
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>@item.TenMau</li>
+    }
+
+</ul>

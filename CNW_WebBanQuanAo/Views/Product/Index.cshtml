@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Shop";
+    ViewBag.Title = "Danh sach san pham";
 }
 
 @using CNW_WebBanQuanAo.Models;
@@ -18,7 +18,7 @@
 <section>
     <div class="container">
         <div class="row">
-            @Html.Action("LeftMenu")
+            @Html.Action("LeftMenu", "Home")
 
             <div class="col-sm-9 padding-right">
                 <div class="features_items">
@@ -28,10 +28,10 @@
                         <span>Ưu tiên xem: </span>
                         <ul>
                             <li class="right-item">
-                                @Html.ActionLink("GIÁ THẤP", "Shop", new { SortOrder = "asc" })
+                                @Html.ActionLink("GIÁ THẤP", "Index", new { SortOrder = "asc" })
                             </li>
                             <li class="right-item">
-                                @Html.ActionLink("GIÁ CAO", "Shop", new { SortOrder = "desc" })
+                                @Html.ActionLink("GIÁ CAO", "Index", new { SortOrder = "desc" })
                             </li>
                             <li class="right-item"><a>BÁN CHẠY</a></li>
                         </ul>
@@ -42,25 +42,12 @@
                             <div class="product-image-wrapper">
                                 <div class="single-products">
                                     <div class="productinfo text-center">
-                                        <img src="~/Content/images/sanpham/@it.UrlAnh" alt="" />
-                                        <h2>@it.GiaBan ₫</h2>
+                                        <a href="@Url.Action("Detail", "Product", new { id = it.MaMH })">
+                                            <img src="~/Content/images/sanpham/@it.UrlAnh" alt="" />
+                                        </a>
+                                        <h2>@it.GiaBan 000 ₫</h2>
                                         <p>@it.TenMH</p>
-                                        <span href="" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>@Html.ActionLink("Thêm vào giỏ", "AddItem", "Cart", new { id = it.MaMH, returnURL = Request.Url.AbsoluteUri }, null)</span>
                                     </div>
-                                    <div class="product-overlay">
-                                        <div class="overlay-content">
-                                            <h2>@it.GiaBan</h2>
-                                            <p>@it.TenMH</p>
-                                            <span href="" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>@Html.ActionLink("Thêm vào giỏ", "AddItem", "Cart", new { id = it.MaMH, returnURL = Request.Url.AbsoluteUri }, null)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="choose">
-                                    <ul class="nav nav-pills nav-justified">
-                                        @*<li><a href=""><i class="fa fa-plus-square"></i>Thêm vào yêu thích</a></li>*@
-                                        <li><a href=""><i class="fa fa-plus-square"></i>Thêm vào yêu thích</a></li>
-                                        <li><a href=""><i class="fa fa-plus-square"></i>So sánh</a></li>
-                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -68,7 +55,7 @@
                     <br />
                     Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) trên @Model.PageCount
 
-                    @Html.PagedListPager(Model, page => Url.Action("Shop",
+                    @Html.PagedListPager(Model, page => Url.Action("Index",
                         new { page, sortOrder = ViewBag.CurrentSort}))
                 </div><!--features_items-->
             </div>

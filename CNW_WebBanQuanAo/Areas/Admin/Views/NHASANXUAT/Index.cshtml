@@ -1,0 +1,39 @@
+﻿@model IEnumerable<CNW_WebBanQuanAo.Models.NHASANXUAT>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TenNSX)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiaChi)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenNSX)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiaChi)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MaNSX }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MaNSX }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MaNSX })
+        </td>
+    </tr>
+}
+
+</table>

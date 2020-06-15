@@ -61,6 +61,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -135,18 +136,23 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MATHANGController.cs" />
+    <Compile Include="Areas\Admin\Controllers\NHASANXUATController.cs" />
     <Compile Include="Areas\Admin\Controllers\SANPHAMController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ANH.cs" />
     <Compile Include="Models\Cart.cs" />
+    <Compile Include="Models\CTMATHANG.cs" />
     <Compile Include="Models\GIAODICH.cs" />
     <Compile Include="Models\GIOHANG.cs" />
     <Compile Include="Models\HOADON.cs" />
-    <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\MATHANG.cs" />
     <Compile Include="Models\MAU.cs" />
     <Compile Include="Models\MyContext.cs" />
@@ -156,6 +162,7 @@
     <Compile Include="Models\SIZE.cs" />
     <Compile Include="Models\sysdiagrams.cs" />
     <Compile Include="Models\TAIKHOAN.cs" />
+    <Compile Include="Models\TTSANPHAM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -163,6 +170,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\adminHuy.css" />
     <Content Include="Content\css\animate.css" />
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\custom1.css" />
@@ -185,6 +193,9 @@
     <Content Include="Content\images\cart\one.png" />
     <Content Include="Content\images\cart\three.png" />
     <Content Include="Content\images\cart\two.png" />
+    <Content Include="Content\images\home\banner1.jpg" />
+    <Content Include="Content\images\home\banner2.jpg" />
+    <Content Include="Content\images\home\banner3.jpg" />
     <Content Include="Content\images\home\bg_border.png" />
     <Content Include="Content\images\home\gallery1.jpg" />
     <Content Include="Content\images\home\gallery2.jpg" />
@@ -276,6 +287,17 @@
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\fonts\FontAwesome.otf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Areas\Admin\Views\MATHANG\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\MATHANG\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\MATHANG\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\MATHANG\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\MATHANG\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\NHASANXUAT\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\NHASANXUAT\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\NHASANXUAT\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\NHASANXUAT\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\NHASANXUAT\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -302,11 +324,12 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
-    <Content Include="Views\Home\Checkout.cshtml" />
-    <Content Include="Views\Home\Detail.cshtml" />
-    <Content Include="Views\Home\Login.cshtml" />
-    <Content Include="Views\Home\Shop.cshtml" />
+    <Content Include="Views\Cart\Checkout.cshtml" />
+    <Content Include="Views\Product\Detail.cshtml" />
     <Content Include="Views\Shared\_LeftMenu.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Home\TestWebService.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

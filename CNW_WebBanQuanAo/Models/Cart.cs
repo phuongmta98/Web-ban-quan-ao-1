@@ -9,22 +9,26 @@ namespace CNW_WebBanQuanAo.Models
     public class CartItem
     {
         public MATHANG mATHANG { get; set; }
+        public TTSANPHAM tTSANPHAM { get; set; }
         public int Quantity { get; set; }
     }
     public class Cart
     {
-        private List<CartItem> lineCollection = new List<CartItem>();
-        public List<CartItem> LineCollection {
-            get { return lineCollection; } 
+        private readonly List<CartItem> lineCollection = new List<CartItem>();
+        private double totalMoney;
+        public double TotalMoney { get { return totalMoney; } set { totalMoney = value; } }
+        public List<CartItem> LineCollection
+        {
+            get { return lineCollection; }
         }
 
-        public void AddItem(MATHANG sp, int quant)
+        public void AddItem(TTSANPHAM sp, int quant)
         {
-            CartItem line = lineCollection.Where(x => x.mATHANG.MaMH == sp.MaMH).FirstOrDefault();
+            CartItem line = lineCollection.Where(x => x.tTSANPHAM.MaMH == sp.MaMH).FirstOrDefault();
 
             if (line is null)
             {
-                lineCollection.Add(new CartItem { mATHANG = sp, Quantity = quant });
+                lineCollection.Add(new CartItem { tTSANPHAM = sp, Quantity = quant });
             }
             else
             {
@@ -34,6 +38,13 @@ namespace CNW_WebBanQuanAo.Models
 
                 //}
             }
+
+            double sum = 0;
+            foreach (var i in lineCollection)
+            {
+                sum += (double) (i.tTSANPHAM.GiaBan * i.Quantity);
+            }
+            totalMoney = sum;
         }
     }
 }

@@ -1,7 +1,8 @@
-namespace CNW_WebBanQuanAo.Models
+﻿namespace CNW_WebBanQuanAo.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
@@ -22,6 +23,7 @@ namespace CNW_WebBanQuanAo.Models
         [StringLength(50)]
         public string Username { get; set; }
 
+        [DisplayName("Họ Tên")]
         public string HoTen { get; set; }
 
         [StringLength(20)]

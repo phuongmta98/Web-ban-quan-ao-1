@@ -24,6 +24,7 @@ namespace CNW_WebBanQuanAo.Models
         public virtual DbSet<SIZE> SIZE { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<TAIKHOAN> TAIKHOAN { get; set; }
+        public virtual DbSet<TTSANPHAM> TTSANPHAM { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -47,10 +48,6 @@ namespace CNW_WebBanQuanAo.Models
                 .HasMany(e => e.GIAODICH)
                 .WithRequired(e => e.HOADON)
                 .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<MATHANG>()
-                .Property(e => e.GiaBan)
-                .HasPrecision(19, 4);
 
             modelBuilder.Entity<MATHANG>()
                 .HasMany(e => e.ANH)
@@ -119,6 +116,14 @@ namespace CNW_WebBanQuanAo.Models
                 .HasMany(e => e.PHANHOI)
                 .WithOptional(e => e.TAIKHOAN)
                 .HasForeignKey(e => e.MaKH);
+
+            modelBuilder.Entity<TTSANPHAM>()
+                .Property(e => e.MaSize)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TTSANPHAM>()
+                .Property(e => e.GiaBan);
         }
     }
 }

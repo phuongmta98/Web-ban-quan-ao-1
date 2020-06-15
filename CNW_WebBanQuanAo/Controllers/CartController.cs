@@ -20,16 +20,29 @@ namespace CNW_WebBanQuanAo.Controllers
             return View(model);
         }
 
-        public ActionResult AddItem(int id, string returnURL)
+        public ActionResult AddItem(string returnURL)
         {
-            var sp = context.MATHANG.Find(id);
+            //var sp = context.MATHANG.Find(id);
+            int maSP = Convert.ToInt32(Request.Form["idSanPham"]);
+            var sp = context.TTSANPHAM.Find(maSP);
+            //var sp = (TTSANPHAM) context.TTSANPHAM.Where(s => s.MaQA == maSP);
             var cart = (Cart)Session["CartSession"];
             if (cart is null)
             {
                 cart = new Cart();
             }
 
-            cart.AddItem(sp, 1);
+            int soluong;
+            try
+            {
+                soluong = Convert.ToInt32(Request.Form["quantity"]);
+            }
+            catch (Exception e)
+            {
+                soluong = 1;
+            }
+            //Console.Write(soluong);
+            cart.AddItem(sp, soluong);
             Session["CartSession"] = cart;
 
             if (String.IsNullOrEmpty(returnURL))
@@ -38,6 +51,29 @@ namespace CNW_WebBanQuanAo.Controllers
             }
 
             return Redirect(returnURL);
+        }
+
+        public ActionResult Checkout()
+        {
+            var cart = (Cart)Session["CartSession"];
+            if (cart is null)
+            {
+                cart = new Cart();
+            }
+
+            return View(cart);
+        }
+
+        public void IncProd(int? maSP)
+        {
+            if (maSP is null) RedirectToAction("Index");
+
+            var cart = (Cart)Session["CartSession"];
+            var sanPham = context.TTSANPHAM.Find(maSP);
+
+            cart.AddItem(sanPham, 1);
+
+            RedirectToAction("Index");
         }
     }
 }

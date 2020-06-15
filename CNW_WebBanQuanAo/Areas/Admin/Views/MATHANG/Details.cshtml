@@ -1,0 +1,74 @@
+﻿@model CNW_WebBanQuanAo.Models.MATHANG
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>MATHANG</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NHASANXUAT.TenNSX)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NHASANXUAT.TenNSX)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NHASANXUAT1.TenNSX)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NHASANXUAT1.TenNSX)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TenMH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenMH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UrlAnh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UrlAnh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KieuDang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KieuDang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChatLieu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChatLieu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GiaBan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GiaBan)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaMH }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

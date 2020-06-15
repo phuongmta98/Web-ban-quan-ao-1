@@ -2,6 +2,8 @@
 @{
     ViewBag.Title = "Checkout";
 }
+@using CNW_WebBanQuanAo.Models;
+@model Cart
 
 <section id="cart_items">
     <div class="container">
@@ -86,89 +88,44 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="cart_product">
-                            <a href=""><img src="~/Content/images/cart/one.png" alt=""></a>
-                        </td>
-                        <td class="cart_description">
-                            <h4><a href="">Colorblock Scuba</a></h4>
-                            <p>Web ID: 1089772</p>
-                        </td>
-                        <td class="cart_price">
-                            <p>59 000₫</p>
-                        </td>
-                        <td class="cart_quantity">
-                            <div class="cart_quantity_button">
-                                <a class="cart_quantity_up" href=""> + </a>
-                                <input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-                                <a class="cart_quantity_down" href=""> - </a>
-                            </div>
-                        </td>
-                        <td class="cart_total">
-                            <p class="cart_total_price">59 000₫</p>
-                        </td>
-                        <td class="cart_delete">
-                            <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-                        </td>
-                    </tr>
+                    @foreach (CartItem it in Model.LineCollection)
+                    {
+                        <tr>
+                            <td class="cart_product">
+                                <a href="~/Product/Detail?id=@it.tTSANPHAM.MaMH"><img src="~/Content/images/sanpham/@it.tTSANPHAM.UrlAnh" alt="" style="width:100px; height:100%;"></a>
+                            </td>
+                            <td class="cart_description">
+                                <h4><a href="">@it.tTSANPHAM.TenMH</a></h4>
+                                <p>Mã sản phẩm: @it.tTSANPHAM.MaMH</p>
+                                <p>Màu: @it.tTSANPHAM.MaMau</p>
+                                <p>Size: @it.tTSANPHAM.MaSize</p>
+                            </td>
+                            <td class="cart_price">
+                                <p>@it.tTSANPHAM.GiaBan ₫</p>
+                            </td>
+                            <td class="cart_quantity">
+                                <div class="cart_quantity_button">
+                                    <a class="cart_quantity_up" href=""> - </a>
+                                    <input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
+                                    <a class="cart_quantity_down" href=""> + </a>
+                                </div>
+                            </td>
+                            <td class="cart_total">
+                                <p class="cart_total_price">@it.tTSANPHAM.GiaBan 000 ₫</p>
+                            </td>
+                            <td class="cart_delete">
+                                <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+                            </td>
+                        </tr>
+                    }
 
-                    <tr>
-                        <td class="cart_product">
-                            <a href=""><img src="~/Content/images/cart/two.png" alt=""></a>
-                        </td>
-                        <td class="cart_description">
-                            <h4><a href="">Colorblock Scuba</a></h4>
-                            <p>Web ID: 1089772</p>
-                        </td>
-                        <td class="cart_price">
-                            <p>59 000₫</p>
-                        </td>
-                        <td class="cart_quantity">
-                            <div class="cart_quantity_button">
-                                <a class="cart_quantity_up" href=""> + </a>
-                                <input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-                                <a class="cart_quantity_down" href=""> - </a>
-                            </div>
-                        </td>
-                        <td class="cart_total">
-                            <p class="cart_total_price">59 000₫</p>
-                        </td>
-                        <td class="cart_delete">
-                            <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="cart_product">
-                            <a href=""><img src="~/Content/images/cart/three.png" alt=""></a>
-                        </td>
-                        <td class="cart_description">
-                            <h4><a href="">Colorblock Scuba</a></h4>
-                            <p>Web ID: 1089772</p>
-                        </td>
-                        <td class="cart_price">
-                            <p>59 000₫</p>
-                        </td>
-                        <td class="cart_quantity">
-                            <div class="cart_quantity_button">
-                                <a class="cart_quantity_up" href=""> + </a>
-                                <input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-                                <a class="cart_quantity_down" href=""> - </a>
-                            </div>
-                        </td>
-                        <td class="cart_total">
-                            <p class="cart_total_price">59 000₫</p>
-                        </td>
-                        <td class="cart_delete">
-                            <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-                        </td>
-                    </tr>
                     <tr>
                         <td colspan="4">&nbsp;</td>
                         <td colspan="2">
                             <table class="table table-condensed total-result">
                                 <tr>
                                     <td>Tổng số giỏ hàng</td>
-                                    <td>59 000₫</td>
+                                    <td>@Model.TotalMoney 000₫</td>
                                 </tr>
                                 <tr class="shipping-cost">
                                     <td>Phí vận chuyển</td>
@@ -176,7 +133,7 @@
                                 </tr>
                                 <tr>
                                     <td>Tổng cộng</td>
-                                    <td><span>59 000₫</span></td>
+                                    <td><span>@Model.TotalMoney 000₫</span></td>
                                 </tr>
                             </table>
                         </td>

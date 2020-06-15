@@ -1,0 +1,69 @@
+﻿@model IEnumerable<CNW_WebBanQuanAo.Models.MATHANG>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Danh sách mặt hàng</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NHASANXUAT.TenNSX)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NHASANXUAT1.TenNSX)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TenMH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UrlAnh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KieuDang)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChatLieu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GiaBan)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NHASANXUAT.TenNSX)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NHASANXUAT1.TenNSX)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenMH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UrlAnh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KieuDang)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChatLieu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GiaBan)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MaMH }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MaMH }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MaMH })
+        </td>
+    </tr>
+}
+
+</table>

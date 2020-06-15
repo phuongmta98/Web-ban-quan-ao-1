@@ -3,9 +3,11 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - E-Shopper Admin</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/Content/css/adminHuy.css" rel="stylesheet">
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -16,22 +18,37 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("E-Shopper", "Index", "Admin", new { area = "Admin" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
+            <div class="navbar-collapse collapse" style="float:right">
                 <ul class="nav navbar-nav">
+                    <li><a href="">Trở lại trang mua sắm</a></li>
+                    <li><a href="">Tài khoản <i class="fa fa-user-circle-o" aria-hidden="true"></i></a></li>
                 </ul>
             </div>
         </div>
     </div>
 
-    <div class="container body-content">
-        @RenderBody()
+    @*<div class="container body-content">*@
+        <section>
+            <nav>
+                <ul>
+                    <a href=""><li>Quản lý hóa đơn</li></a>
+                    <a href="~/Admin/MATHANG/Index"><li>Mặt hàng</li></a>
+                    <a href=""><li>Danh mục</li></a>
+                    <a href=""><li>Phản hồi từ khách</li></a>
+                </ul>
+            </nav>
+            <article>
+                @RenderBody()
+            </article>
+        </section>
+
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - E-Shopper</p>
         </footer>
-    </div>
+    @*</div>*@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

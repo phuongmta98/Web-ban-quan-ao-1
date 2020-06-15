@@ -11,12 +11,16 @@
                 <div class="login-form">
                     <!--login form-->
                     <h2>Đăng nhập tài khoản của bạn</h2>
-                    @using (Html.BeginForm("Login", "Home"))
+                    @using (Html.BeginForm("LoginPost", "Account"))
                     {
-                        <input type="text" name="username" placeholder="Tên đăng nhập" />
-                        <input type="password" name="password" placeholder="Mật khẩu" />
+                        if (String.IsNullOrEmpty(Model.Username) || String.IsNullOrEmpty(Model.Password))
+                        {
+                            Model.Username = Model.Password = "";
+                        }
+                        <input type="text" name="username" placeholder="Tên đăng nhập" value="@Model.Username" />
+                        <input type="password" name="password" placeholder="Mật khẩu" value="@Model.Password" />
                         <span>
-                            <input type="checkbox" class="checkbox" value="Login">
+                            <input type="checkbox" class="checkbox" value="remember" name="checkbox">
                             Giữ đăng nhập
                         </span>
                         <button type="submit" class="btn btn-default">Đăng nhập</button>

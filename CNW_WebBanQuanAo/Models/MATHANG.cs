@@ -30,8 +30,7 @@ namespace CNW_WebBanQuanAo.Models
 
         public int? MaNSX { get; set; }
 
-        [Column(TypeName = "money")]
-        public decimal? GiaBan { get; set; }
+        public int? GiaBan { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ANH> ANH { get; set; }

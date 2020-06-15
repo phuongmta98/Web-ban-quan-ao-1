@@ -1,0 +1,198 @@
+﻿@{
+    ViewBag.Title = "Detail";
+}
+
+@using CNW_WebBanQuanAo.Models;
+@model CTMATHANG
+
+<section>
+    <div class="container">
+        <div class="row">
+
+            @Html.Action("LeftMenu", "Home")
+
+            <div class="col-sm-9 padding-right">
+                <div class="product-details">
+                    <!--product-details-->
+                    <div class="col-sm-5">
+                        <div class="view-product">
+                            @*<img src="~/Content/images/product-details/1.jpg" alt="" />*@
+                            <img src="~/Content/images/sanpham/@Model.mATHANG.UrlAnh" alt="" />
+                            @*<h3>ZOOM</h3>*@
+                        </div>
+
+                        @* Xu ly sau phan nay *@
+                        <div id="similar-product" class="carousel slide" data-ride="carousel">
+
+                            <!-- Wrapper for slides -->
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <a href=""><img src="~/Content/images/product-details/similar1.jpg" alt=""></a>
+                                    <a href=""><img src="~/Content/images/product-details/similar2.jpg" alt=""></a>
+                                    <a href=""><img src="~/Content/images/product-details/similar3.jpg" alt=""></a>
+                                </div>
+                                <div class="item">
+                                    <a href=""><img src="~/Content/images/product-details/similar1.jpg" alt=""></a>
+                                    <a href=""><img src="~/Content/images/product-details/similar2.jpg" alt=""></a>
+                                    <a href=""><img src="~/Content/images/product-details/similar3.jpg" alt=""></a>
+                                </div>
+                                <div class="item">
+                                    <a href=""><img src="~/Content/images/product-details/similar1.jpg" alt=""></a>
+                                    <a href=""><img src="~/Content/images/product-details/similar2.jpg" alt=""></a>
+                                    <a href=""><img src="~/Content/images/product-details/similar3.jpg" alt=""></a>
+                                </div>
+
+                            </div>
+
+                            <!-- Controls -->
+                            <a class="left item-control" href="#similar-product" data-slide="prev">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a class="right item-control" href="#similar-product" data-slide="next">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-7">
+                        <div class="product-information">
+                            <!--/product-information-->
+                            <h2>@Model.mATHANG.TenMH</h2>
+
+                            <p>Mã : @Model.mATHANG.MaMH</p>
+                            <br />
+                            <span style="padding-bottom:20px;">
+                                @using (Html.BeginForm("AddItem", "Cart", new { returnURL = Request.Url.AbsoluteUri }))
+                                {
+                                    <span>@Model.mATHANG.GiaBan 000₫</span>
+                                    <br />
+
+                                    <select name="idSanPham" id="idSanPham">
+                                        @foreach (var item in Model.SpList)
+                                        {
+                                            <option value="@item.MaQA">Mã màu: @item.MaMau - Size: @item.MaSize</option>
+                                        }
+                                    </select>
+                                    <br />
+                                    <br />
+
+                                    <label for="quantity">Số lượng:</label>
+                                    <input type="number" id="quantity" name="quantity" min="1" max="20" value="1">
+
+                                    @*<a href="@Url.Action("AddItem", "Cart", new { id = Model.mATHANG.MaMH, returnURL = Request.Url.AbsoluteUri })">*@
+                                    <button type="submit" class="btn btn-fefault cart">
+                                        <i class="fa fa-shopping-cart"></i>
+                                        Thêm vào giỏ
+                                    </button>
+                                }
+                            </span>
+                            <p><b>Kiểu dáng: </b>@Model.mATHANG.KieuDang</p>
+                            <p><b>Chất liệu: </b>@Model.mATHANG.ChatLieu</p>
+                            <p><b>Thương hiệu: </b>@Model.SpList[0].TenNSX</p>
+
+                            @*<ul>
+                                @foreach (var item in Model.SpList)
+                                {
+                                    <li>@item.MaMau - @item.MaSize</li>
+                                }
+                            </ul>*@
+                            @*   <a href=""><img src="~/Content/images/product-details/share.png" class="share img-responsive" alt="" /></a>*@
+                        </div><!--/product-information-->
+                    </div>
+                </div><!--/product-details-->
+                
+                <div class="recommended_items">
+                    <!--recommended_items-->
+                    <h2 class="title text-center">SẢN PHẨM TƯƠNG TỰ </h2>
+
+                    <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <div class="col-sm-4">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products">
+                                            <div class="productinfo text-center">
+                                                <img src="~/Content/images//home/recommend1.jpg" alt="" />
+                                                <h2>56 000₫</h2>
+                                                <p>Easy Polo Black Edition</p>
+                                                <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products">
+                                            <div class="productinfo text-center">
+                                                <img src="~/Content/images//home/recommend2.jpg" alt="" />
+                                                <h2>56 000₫</h2>
+                                                <p>Easy Polo Black Edition</p>
+                                                <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products">
+                                            <div class="productinfo text-center">
+                                                <img src="~/Content/images//home/recommend3.jpg" alt="" />
+                                                <h2>56 000₫</h2>
+                                                <p>Easy Polo Black Edition</p>
+                                                <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="col-sm-4">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products">
+                                            <div class="productinfo text-center">
+                                                <img src="~/Content/images//home/recommend1.jpg" alt="" />
+                                                <h2>56 000₫</h2>
+                                                <p>Easy Polo Black Edition</p>
+                                                <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products">
+                                            <div class="productinfo text-center">
+                                                <img src="~/Content/images//home/recommend2.jpg" alt="" />
+                                                <h2>56 000₫</h2>
+                                                <p>Easy Polo Black Edition</p>
+                                                <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products">
+                                            <div class="productinfo text-center">
+                                                <img src="~/Content/images//home/recommend3.jpg" alt="" />
+                                                <h2>56 000₫</h2>
+                                                <p>Easy Polo Black Edition</p>
+                                                <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                        <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </div>
+                </div><!--/recommended_items-->
+            </div>
+        </div>
+    </div>
+</section>
