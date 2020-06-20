@@ -69,5 +69,9 @@ namespace CNW_WebBanQuanAo.Controllers
             return View(m);
         }
 
+        void Test()
+        {
+            Console.WriteLine("abcd");
+        }
     }
 }
