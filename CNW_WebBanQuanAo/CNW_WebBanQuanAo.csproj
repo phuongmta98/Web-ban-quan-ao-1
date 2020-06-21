@@ -149,7 +149,6 @@
     </Compile>
     <Compile Include="Models\ANH.cs" />
     <Compile Include="Models\Cart.cs" />
-    <Compile Include="Models\CTHOADON.cs" />
     <Compile Include="Models\CTMATHANG.cs" />
     <Compile Include="Models\GIAODICH.cs" />
     <Compile Include="Models\GIOHANG.cs" />
@@ -299,7 +298,6 @@
     <Content Include="Areas\Admin\Views\NHASANXUAT\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\NHASANXUAT\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\Details.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -325,17 +323,18 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Cart\Checkout.cshtml" />
     <Content Include="Views\Product\Detail.cshtml" />
     <Content Include="Views\Shared\_LeftMenu.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Home\TestWebService.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Cart\Gio.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="ViewModel\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
