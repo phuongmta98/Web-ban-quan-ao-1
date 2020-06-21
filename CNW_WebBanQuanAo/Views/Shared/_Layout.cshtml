@@ -67,16 +67,21 @@
                                 <ul class="nav navbar-nav">
                                     <li><a href="~/Admin/Admin/Index"><i class="fa fa-user"></i> Admin</a></li>
                                     <li>
-                                        <i class="fa fa-user"></i>
+                                       
                                         @if (Session["dnhap"] != null)
                                         {
-                                            @Html.ActionLink("Tài khoản", "XemDon", "Cart")
+                                            <i class="fa fa-user">
+                                                @Html.ActionLink("Tài khoản", "XemDon", "Cart")
+                                            </i>
                                         }
                                         else
                                         {
-                                            @Html.ActionLink("Tài khoản", "DangNhap", "Account")
+                                            <i class="fa fa-user">
+                                               @Html.ActionLink("Tài khoản", "DangNhap", "Account")
+                                            </i>
+
                                         }
-                                    </li>
+                                        </li>
                                     <li><a href=""><i class="fa fa-star"></i> Sản phẩm yêu thích</a></li>
                                     <li>
                                         @if (Session["dnhap"] != null && Session["CartSession"] != null)

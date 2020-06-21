@@ -116,7 +116,7 @@ namespace CNW_WebBanQuanAo.Controllers
                 }
                 return View(cart);
             }
-            return Redirect("https://localhost:44304/Home/DangNhap");
+            return Redirect("https://localhost:44304/Account/DangNhap");
         }
 
 
@@ -183,7 +183,7 @@ namespace CNW_WebBanQuanAo.Controllers
             }
             else
             {
-                return Redirect("https://localhost:44304/Home/DangNhap");
+                return Redirect("https://localhost:44304/Account/DangNhap");
             }
 
 
