@@ -3,6 +3,7 @@
 }
 
 @using CNW_WebBanQuanAo.Models;
+@using CNW_WebBanQuanAo.Controllers;
 @model CTMATHANG
 
 <section>
@@ -70,7 +71,9 @@
                                     <select name="idSanPham" id="idSanPham">
                                         @foreach (var item in Model.SpList)
                                         {
+
                                             <option value="@item.MaQA">Mã màu: @item.MaMau - Size: @item.MaSize</option>
+
                                         }
                                     </select>
                                     <br />
@@ -80,10 +83,12 @@
                                     <input type="number" id="quantity" name="quantity" min="1" max="20" value="1">
 
                                     @*<a href="@Url.Action("AddItem", "Cart", new { id = Model.mATHANG.MaMH, returnURL = Request.Url.AbsoluteUri })">*@
-                                    <button type="submit" class="btn btn-fefault cart">
-                                        <i class="fa fa-shopping-cart"></i>
-                                        Thêm vào giỏ
-                                    </button>
+                                    @*<button type="submit" class="btn btn-fefault cart">*@
+                                    @*<i class="fa fa-shopping-cart"></i>
+                Thêm vào giỏ
+            </button>*@
+                                    
+
                                 }
                             </span>
                             <p><b>Kiểu dáng: </b>@Model.mATHANG.KieuDang</p>

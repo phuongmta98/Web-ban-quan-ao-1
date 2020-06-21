@@ -1,9 +1,29 @@
 ﻿
 @{
-    ViewBag.Title = "Checkout";
+    ViewBag.Title = "Payment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+
+
+
+
+
+@using CNW_WebBanQuanAo.Controllers;
 @using CNW_WebBanQuanAo.Models;
+
 @model Cart
+@{ decimal tongtien = Model.ComputeTotalValue().Value;}
+
+@{ MyContext context = new MyContext(); }
+
+@{
+    var dn = (TAIKHOAN)Session["dnhap"];
+
+    var tk = context.TAIKHOAN.Find(dn.Username);
+    var hten = tk.HoTen; ;
+    var dc = tk.DiaChi;
+}
 
 <section id="cart_items">
     <div class="container">
@@ -42,27 +62,17 @@
                 <div class="col-sm-3">
                     <div class="shopper-info">
                         <p>Thông tin người mua</p>
-                        <form>
-                            <input type="text" placeholder="Tên hiển thị">
-                            <input type="text" placeholder="Tên đăng nhập">
-                            <input type="password" placeholder="Mật khẩu">
-                            <input type="password" placeholder="Xác nhận mật khẩu">
+                        <form method="post" action="/Cart/Payment">
+                            <input type="text" placeholder="Mã khách" name="MaKH" value="@dn.Username">
+                            <input type="text" placeholder="Tên khách" name="TenKhach" value="@hten">
+                            <input type="text" placeholder="Địa chỉ khách" name="DiaChiKhach" value="@dc">
+                            <input type="text" placeholder="Ngày giao" name="Ngaygiao" value="@DateTime.Now">
+                            <input type="hidden" placeholder="Trạng thái" name="TrangThai" value="Đang xử lí">
+                            <button type="submit" class="btn">Thanh toán hoàn tất</button>
                         </form>
-                        <a class="btn btn-primary" href="">Gửi mã</a>
-                        <a class="btn btn-primary" href="">Tiếp tục</a>
                     </div>
                 </div>
-                <div class="col-sm-5 clearfix">
-                    <div class="bill-to">
-                        <p>Gửi tới</p>
-                        <div class="form-one">
-                            <form>
-                                <input type="text" placeholder="Số điện thoại">
-                                <input type="text" placeholder="Địa chỉ">
-                            </form>
-                        </div>
-                    </div>
-                </div>
+
                 <div class="col-sm-4">
                     <div class="order-message">
                         <p>Vận chuyển</p>
@@ -80,44 +90,45 @@
                 <thead>
                     <tr class="cart_menu">
                         <td class="image">Sản phẩm</td>
-                        <td class="description"></td>
+                        <td class="description">Tên mặt hàng</td>
+                        <td class="description">Mã màu</td>
                         <td class="price">Giá</td>
                         <td class="quantity">Số lượng</td>
-                        <td class="total">Thành tiền</td>
+                        <td class="total">Mã size</td>
                         <td></td>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (CartItem it in Model.LineCollection)
+
+                    @foreach (CartItem it in Model.Lines)
                     {
                         <tr>
+
                             <td class="cart_product">
-                                <a href="~/Product/Detail?id=@it.tTSANPHAM.MaMH"><img src="~/Content/images/sanpham/@it.tTSANPHAM.UrlAnh" alt="" style="width:100px; height:100%;"></a>
+                                <img src="~/Content/images/home/@it.Sanpham.MATHANG.UrlAnh" alt="" />
+
                             </td>
                             <td class="cart_description">
-                                <h4><a href="">@it.tTSANPHAM.TenMH</a></h4>
-                                <p>Mã sản phẩm: @it.tTSANPHAM.MaMH</p>
-                                <p>Màu: @it.tTSANPHAM.MaMau</p>
-                                <p>Size: @it.tTSANPHAM.MaSize</p>
+
+                                <p>@it.Sanpham.MATHANG.TenMH</p>
+                            </td>
+                            <td class="cart_description">
+
+                                <p>@it.Sanpham.MAU.TenMau</p>
                             </td>
                             <td class="cart_price">
-                                <p>@it.tTSANPHAM.GiaBan ₫</p>
+                                <p>@it.Sanpham.MATHANG.GiaBan</p>
                             </td>
-                            <td class="cart_quantity">
-                                <div class="cart_quantity_button">
-                                    <a class="cart_quantity_up" href=""> - </a>
-                                    <input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-                                    <a class="cart_quantity_down" href=""> + </a>
-                                </div>
+                            <td class="cart_price">
+                                <p>@it.Quantity</p>
                             </td>
                             <td class="cart_total">
-                                <p class="cart_total_price">@it.tTSANPHAM.GiaBan 000 ₫</p>
-                            </td>
-                            <td class="cart_delete">
-                                <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+                                <p class="cart_total_price">@it.Sanpham.MaSize</p>
                             </td>
                         </tr>
                     }
+
+
 
                     <tr>
                         <td colspan="4">&nbsp;</td>
@@ -125,7 +136,7 @@
                             <table class="table table-condensed total-result">
                                 <tr>
                                     <td>Tổng số giỏ hàng</td>
-                                    <td>@Model.TotalMoney 000₫</td>
+                                    <td>@tongtien</td>
                                 </tr>
                                 <tr class="shipping-cost">
                                     <td>Phí vận chuyển</td>
@@ -133,7 +144,7 @@
                                 </tr>
                                 <tr>
                                     <td>Tổng cộng</td>
-                                    <td><span>@Model.TotalMoney 000₫</span></td>
+                                    <td><span>59 000₫</span></td>
                                 </tr>
                             </table>
                         </td>
@@ -142,6 +153,8 @@
             </table>
         </div>
         <div class="payment-options">
+
+
             <span>
                 <label><input type="checkbox"> Chuyển tiền trực tiếp<br /> qua ngân hàng</label>
             </span>

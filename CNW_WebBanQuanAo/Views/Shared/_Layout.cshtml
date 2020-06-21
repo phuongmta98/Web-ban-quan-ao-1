@@ -66,10 +66,63 @@
                             <div class="shop-menu clearfix pull-right">
                                 <ul class="nav navbar-nav">
                                     <li><a href="~/Admin/Admin/Index"><i class="fa fa-user"></i> Admin</a></li>
-                                    @*<li><a href=""><i class="fa fa-user"></i> Tài khoản</a></li>*@
+                                    <li>
+                                       
+                                        @if (Session["dnhap"] != null)
+                                        {
+                                            <i class="fa fa-user">
+                                                @Html.ActionLink("Tài khoản", "XemDon", "Cart")
+                                            </i>
+                                        }
+                                        else
+                                        {
+                                            <i class="fa fa-user">
+                                               @Html.ActionLink("Tài khoản", "DangNhap", "Account")
+                                            </i>
+
+                                        }
+                                        </li>
                                     <li><a href=""><i class="fa fa-star"></i> Sản phẩm yêu thích</a></li>
-                                    <li><a href="~/Home/Checkout"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
-                                    <li><a href="~/Cart/Index"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
+                                    <li>
+                                        @if (Session["dnhap"] != null && Session["CartSession"] != null)
+                                        {
+                                            <i class="fa fa-crosshairs">
+                                                @Html.ActionLink("Thanh toán", "Payment", "Cart")
+                                            </i>
+                                        }
+                                        else if (Session["dnhap"] == null)
+                                        { <i class="fa fa-crosshairs">
+                                                @Html.ActionLink("Thanh toán", "DangNhap", "Account")
+                                            </i>
+                                        }
+                                        else if (Session["dnhap"] != null && Session["CartSession"] == null)
+                                        {
+                                            <i class="fa fa-crosshairs">
+                                                @Html.ActionLink("Thanh toán", "ThanhToan", "Cart")
+                                            </i>
+                                        }
+                                    </li>
+                                    <li>
+                                        @if (Session["dnhap"] == null && Session["CartSession"] != null)
+                                        {
+                                            <i class="fa fa-shopping-cart">
+                                                @Html.ActionLink("Giỏ hàng", "Gio", "Cart")
+                                            </i>
+                                        }
+
+                                        else if (Session["dnhap"] != null && Session["CartSession"] == null)
+                                        {
+                                            <i class="fa fa-shopping-cart">
+                                                @Html.ActionLink("Giỏ hàng", "GioTam", "Cart")
+                                            </i>
+                                        }
+                                        else if (Session["dnhap"] == null && Session["CartSession"] == null)
+                                        {
+                                            <i class="fa fa-shopping-cart">
+                                                @Html.ActionLink("Giỏ hàng", "DangNhap", "Account")
+                                            </i>
+                                        }
+                                    </li>
                                     @{var user = (TAIKHOAN) Session["LoggedinUser"];
                                         if (user is null)
                                         {

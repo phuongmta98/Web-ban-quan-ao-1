@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "DangNhap";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+<section id="form">
+    <!--form-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-1">
+                <div class="login-form">
+                    <!--login form-->
+                    <h2>Đăng nhập tài khoản của bạn</h2>
+                    <form action="/Home/DangNhap" method="post">
+                        <input type="text" placeholder="Tên đăng nhập" name="Username" />
+                        <input type="text" placeholder="Địa chỉ Email" name="Password" />
+                        <span>
+                            <input type="checkbox" class="checkbox">
+                            Giữ đăng nhập
+                        </span>
+                        <button type="submit" class="btn btn-default">Đăng nhập</button>
+                    </form>
+                </div><!--/login form-->
+            </div>
+            <div class="col-sm-1">
+                <h2 class="or">Hoặc</h2>
+            </div>
+            <div class="col-sm-4">
+                <div class="signup-form">
+                    <!--sign up form-->
+                    <h2>Đăng ký</h2>
+                    <form action="/Home/DangKy" method="post">
+                        <input type="text" placeholder="Tên đăng nhập" name="Username" />
+                        <input type="text" placeholder="Họ tên" name="HoTen" />
+                        <input type="hidden" placeholder="Admin" name="isAdmin" value="0" />
+                        <input type="email" placeholder="Địa chỉ Email" name="Email" />
+                        <input type="password" placeholder="Mật khẩu" name="Password" />
+                        <input type="text" placeholder="Số điện thoại" name="SDT" />
+                        <input type="text" placeholder="Địa chỉ" name="DiaChi" />
+                        <button type="submit" class="btn btn-default">Đăng ký</button>
+                    </form>
+                </div><!--/sign up form-->
+            </div>
+        </div>
+    </div>
+</section><!--/form-->
