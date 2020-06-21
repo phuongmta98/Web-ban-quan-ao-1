@@ -1,0 +1,166 @@
+﻿
+@{
+    ViewBag.Title = "Payment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+
+@using CNW_WebBanQuanAo.Controllers;
+@using CNW_WebBanQuanAo.Models;
+
+@model Cart
+@{ decimal tongtien = Model.ComputeTotalValue().Value;}
+
+@{ MyContext context = new MyContext(); }
+
+@{
+    var dn = (TAIKHOAN)Session["dnhap"];
+
+    var tk = context.TAIKHOAN.Find(dn.Username);
+    var hten = tk.HoTen; ;
+    var dc = tk.DiaChi;
+}
+
+<section id="cart_items">
+    <div class="container">
+        <div class="breadcrumbs">
+            <ol class="breadcrumb">
+                <li><a href="#">Trang chủ</a></li>
+                <li class="active">Thanh toán</li>
+            </ol>
+        </div><!--/breadcrums-->
+
+        <div class="step-one">
+            <h2 class="heading">Bước 1</h2>
+        </div>
+        <div class="checkout-options">
+            <h3>Người dùng mới</h3>
+            <p>Tùy chọn thanh toán</p>
+            <ul class="nav">
+                <li>
+                    <label><input type="checkbox"> Đăng kí tài khoản</label>
+                </li>
+                <li>
+                    <label><input type="checkbox"> Thanh toán khách</label>
+                </li>
+                <li>
+                    <a href=""><i class="fa fa-times"></i>Hủy</a>
+                </li>
+            </ul>
+        </div><!--/checkout-options-->
+
+        <div class="register-req">
+            <p>Vui lòng sử dụng Đăng ký và Thanh toán để dễ dàng truy cập vào lịch sử đặt hàng của bạn hoặc sử dụng Checkout với tư cách là Khách</p>
+        </div><!--/register-req-->
+
+        <div class="shopper-informations">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="shopper-info">
+                        <p>Thông tin người mua</p>
+                        <form method="post" action="/Cart/Payment">
+                            <input type="text" placeholder="Mã khách" name="MaKH" value="@dn.Username">
+                            <input type="text" placeholder="Tên khách" name="TenKhach" value="@hten">
+                            <input type="text" placeholder="Địa chỉ khách" name="DiaChiKhach" value="@dc">
+                            <input type="text" placeholder="Ngày giao" name="Ngaygiao" value="@DateTime.Now">
+                            <input type="hidden" placeholder="Trạng thái" name="TrangThai" value="Đang xử lí">
+                            <button type="submit" class="btn">Thanh toán hoàn tất</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="order-message">
+                        <p>Vận chuyển</p>
+                        <textarea name="message" placeholder="Ghi chú về đơn hàng của bạn, Ghi chú đặc biệt khi giao hàng" rows="16"></textarea>
+                        <label><input type="checkbox"> Vận chuyển đến địa chỉ hóa đơn</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="review-payment">
+            <h2>Xem lại và thanh toán</h2>
+        </div>
+        <div class="table-responsive cart_info">
+            <table class="table table-condensed">
+                <thead>
+                    <tr class="cart_menu">
+                        <td class="image">Sản phẩm</td>
+                        <td class="description">Tên mặt hàng</td>
+                        <td class="description">Mã màu</td>
+                        <td class="price">Giá</td>
+                        <td class="quantity">Số lượng</td>
+                        <td class="total">Mã size</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (CartItem it in Model.Lines)
+                    {
+                        <tr>
+
+                            <td class="cart_product">
+                                <img src="~/Content/images/home/@it.Sanpham.MATHANG.UrlAnh" alt="" />
+
+                            </td>
+                            <td class="cart_description">
+
+                                <p>@it.Sanpham.MATHANG.TenMH</p>
+                            </td>
+                            <td class="cart_description">
+
+                                <p>@it.Sanpham.MAU.TenMau</p>
+                            </td>
+                            <td class="cart_price">
+                                <p>@it.Sanpham.MATHANG.GiaBan</p>
+                            </td>
+                            <td class="cart_price">
+                                <p>@it.Quantity</p>
+                            </td>
+                            <td class="cart_total">
+                                <p class="cart_total_price">@it.Sanpham.MaSize</p>
+                            </td>
+                        </tr>
+                    }
+
+
+
+                    <tr>
+                        <td colspan="4">&nbsp;</td>
+                        <td colspan="2">
+                            <table class="table table-condensed total-result">
+                                <tr>
+                                    <td>Tổng số giỏ hàng</td>
+                                    <td>@tongtien</td>
+                                </tr>
+                                <tr class="shipping-cost">
+                                    <td>Phí vận chuyển</td>
+                                    <td>Miễn phí</td>
+                                </tr>
+                                <tr>
+                                    <td>Tổng cộng</td>
+                                    <td><span>59 000₫</span></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="payment-options">
+
+
+            <span>
+                <label><input type="checkbox"> Chuyển tiền trực tiếp<br /> qua ngân hàng</label>
+            </span>
+            <span>
+                <label><input type="checkbox">Kiểm tra thanh<br /> toán trực tiếp</label>
+            </span>
+        </div>
+    </div>
+</section> <!--/#cart_items-->
