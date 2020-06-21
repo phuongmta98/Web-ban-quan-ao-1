@@ -3,6 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using PagedList;
+using PagedList.Mvc;
+using CNW_WebBanQuanAo.ViewModel;
 using System.Web.Mvc;
 
 namespace CNW_WebBanQuanAo.Controllers
@@ -11,46 +14,46 @@ namespace CNW_WebBanQuanAo.Controllers
     {
         MyContext context = new MyContext();
         // GET: Cart
-        public ActionResult Index()
+        public ActionResult Gio()
         {
-            var model = (Cart) Session["CartSession"];
-            if (model is null)
-                model = new Cart();
 
-            return View(model);
-        }
-
-        public ActionResult AddItem(string returnURL)
-        {
-            //var sp = context.MATHANG.Find(id);
-            int maSP = Convert.ToInt32(Request.Form["idSanPham"]);
-            var sp = context.TTSANPHAM.Find(maSP);
-            //var sp = (TTSANPHAM) context.TTSANPHAM.Where(s => s.MaQA == maSP);
             var cart = (Cart)Session["CartSession"];
-            if (cart is null)
+
+            if (cart == null)
             {
                 cart = new Cart();
             }
+            return View(cart);
 
-            int soluong;
-            try
-            {
-                soluong = Convert.ToInt32(Request.Form["quantity"]);
-            }
-            catch (Exception e)
-            {
-                soluong = 1;
-            }
-            //Console.Write(soluong);
-            cart.AddItem(sp, soluong);
-            Session["CartSession"] = cart;
 
-            if (String.IsNullOrEmpty(returnURL))
+        }
+
+        [HttpGet]
+        public ActionResult AddItem(int id)
+        {
+            var product = context.SANPHAM.Find(id);
+
+            var cart = (Cart)Session["CartSession"];
+
+            if (cart == null)
             {
-                return RedirectToAction("Index");
+                //tạo mới đối tượng cart item
+                cart = new Cart();
+                cart.AddItem(product, 1);
+                //Gán vào session
+                Session["CartSession"] = cart;
+            }
+            if (cart != null)
+            {
+                cart.AddItem(product, 1);
+                //Gán vào session
+                Session["CartSession"] = cart;
             }
 
-            return Redirect(returnURL);
+
+            return RedirectToAction("Gio");
+
+
         }
 
         public ActionResult Checkout()
@@ -64,16 +67,6 @@ namespace CNW_WebBanQuanAo.Controllers
             return View(cart);
         }
 
-        public void IncProd(int? maSP)
-        {
-            if (maSP is null) RedirectToAction("Index");
-
-            var cart = (Cart)Session["CartSession"];
-            var sanPham = context.TTSANPHAM.Find(maSP);
-
-            cart.AddItem(sanPham, 1);
-
-            RedirectToAction("Index");
-        }
+      
     }
 }
