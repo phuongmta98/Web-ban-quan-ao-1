@@ -348,16 +348,40 @@ namespace CNW_WebBanQuanAo.Controllers
             return Redirect("https://localhost:44304/Home/Index");
 
         }
-        public ActionResult Checkout()
-        {
-            var cart = (Cart)Session["CartSession"];
-            if (cart is null)
-            {
-                cart = new Cart();
-            }
 
-            return View(cart);
+        public ActionResult XemDon(int? page)
+        {
+            var dn = (TAIKHOAN)Session["dnhap"];
+
+            var model = (from m in context.GIAODICH
+                         join n in context.HOADON on m.MaHD equals n.MaHD
+                         join k in context.TAIKHOAN on n.MaKH equals k.Username
+                         join a in context.SANPHAM on m.MaQA equals a.MaQA
+                         join c in context.MAU on a.MaMau equals c.MaMau
+                         join b in context.MATHANG on a.MaMH equals b.MaMH
+                         join d in context.ANH on b.MaMH equals d.MaMH
+
+
+                         where k.Username == dn.Username
+                         select new xemgiohang()
+                         {
+                             MaQa = m.MaQA,
+                             so = m.SoLuong,
+                             Gia = b.GiaBan.Value,
+                             size = a.MaSize,
+                             tenmau = c.TenMau,
+                             trangthai = n.TrangThai,
+                             tenmh = b.TenMH,
+                             url = d.UrlAnh,
+                             Mahd = n.MaHD
+
+
+                         }
+                        ).OrderByDescending(m => m.Mahd).ToPagedList(page ?? 1, 3);
+            return View(model);
+
         }
+       
 
       
     }
