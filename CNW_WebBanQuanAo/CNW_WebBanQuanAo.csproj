@@ -149,6 +149,7 @@
     </Compile>
     <Compile Include="Models\ANH.cs" />
     <Compile Include="Models\Cart.cs" />
+    <Compile Include="Models\CTHOADON.cs" />
     <Compile Include="Models\CTMATHANG.cs" />
     <Compile Include="Models\GIAODICH.cs" />
     <Compile Include="Models\GIOHANG.cs" />
@@ -298,6 +299,7 @@
     <Content Include="Areas\Admin\Views\NHASANXUAT\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\NHASANXUAT\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Details.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

@@ -26,12 +26,44 @@ namespace CNW_WebBanQuanAo.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MATHANG mATHANG = db.MATHANG.Find(id);
-            if (mATHANG == null)
+            var test = db.HOADON.Include(d => d.GIAODICH.Select(g => g.SANPHAM))
+                .Include(d => d.TAIKHOAN)
+                .Single(h => h.MaHD == id);
+
+            //var hOADON = (from hoadon in db.HOADON
+            //              join giaodich in db.GIAODICH
+            //              on hoadon.MaHD equals giaodich.MaHD
+            //              where hoadon.MaHD == id
+            //              join sanpham in db.SANPHAM
+            //              on giaodich.MaQA equals sanpham.MaQA
+            //              select new CTHOADON
+            //              {
+            //                  MaHD = hoadon.MaHD,
+            //                  MaQA = giaodich.MaQA,
+            //                  MaKH = hoadon.MaKH,
+            //                  NgayDat = hoadon.NgayDat,
+            //                  NgayGiao = hoadon.NgayGiao,
+            //                  NguoiChot = hoadon.NguoiChot,
+            //                  TrangThai = hoadon.TrangThai,
+            //                  TenKhach = hoadon.TenKhach,
+            //                  DiaChiKhach = hoadon.DiaChiKhach,
+            //                  SoLuong = giaodich.SoLuong,
+            //                  MaMH = sanpham.MaMH,
+            //                  MaMau = sanpham.MaMau,
+            //                  MaSize = sanpham.MaSize
+            //              }).Include(h => h.MAU).Include(h => h.SIZE).Include(h => h.MATHANG).Include(h => h.TAIKHOAN); 
+            
+            //foreach (var item in hd)
+            //{
+            //    //    Console.WriteLine(item.MaHD);
+            //    //    Console.WriteLine(item.MaSP);
+            //    System.Diagnostics.Debug.WriteLine(item.MaQA);
+            //}
+            if (test == null)
             {
                 return HttpNotFound();
             }
-            return View(mATHANG);
+            return View(test);
         }
     }
 }
