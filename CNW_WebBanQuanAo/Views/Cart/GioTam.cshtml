@@ -1,0 +1,130 @@
+﻿
+@{
+    ViewBag.Title = "GioTam";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+@using CNW_WebBanQuanAo.ViewModel;
+@using CNW_WebBanQuanAo.Controllers;
+@using CNW_WebBanQuanAo.Models;
+
+@model IEnumerable<dschitietsanpham>
+
+@{ decimal tongtien = 0;
+}
+
+@{ MyContext context = new MyContext(); }
+
+@{
+    var dn = (TAIKHOAN)Session["dnhap"];
+
+    var tk = context.TAIKHOAN.Find(dn.Username);
+    var hten = tk.HoTen; ;
+    var dc = tk.DiaChi;
+}
+
+
+<section id="cart_items">
+    <div class="container">
+
+        <div class="breadcrumbs">
+            <ol class="breadcrumb">
+                <li><a href="#">Trang chủ</a></li>
+                <li class="active">Giỏ mua sắm</li>
+            </ol>
+
+        </div><!--/breadcrums-->
+
+
+        <div class="table-responsive cart_info">
+            <table class="table table-condensed">
+                <thead>
+                    <tr class="cart_menu">
+                        <td class="image">Sản phẩm</td>
+                        <td class="price">Tên mặt hàng</td>
+                        <td class="description">Mã sản phẩm</td>
+                        <td class="price">Size</td>
+                        <td class="price">Màu</td>
+                        <td class="price">Số lượng</td>
+                        <td class="quantity">Giá bán</td>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (dschitietsanpham it in Model)
+                    {
+                        <tr>
+
+                            <td class="cart_product">
+                                <a href=""><img src="~/Content/images/home/@it.url" alt=""></a>
+                            </td>
+                            <td class="cart_price">
+                                <p>@it.tenh</p>
+                            </td>
+                            <td class="cart_description">
+
+                                <p>@it.maqa</p>
+                            </td>
+                            <td class="cart_price">
+                                <p>@it.size</p>
+                            </td>
+                            <td class="cart_price">
+                                <p>@it.tenmau</p>
+                            </td>
+                            <td class="cart_price">
+                                <p>@it.so</p>
+                            </td>
+
+                            <td class="cart_total">
+                                <p class="cart_total_price">@it.gia</p>
+                            </td>
+
+                        </tr>
+
+
+
+                        decimal tien;
+                        tien = (decimal.Parse(it.so.Value.ToString()) * it.gia).Value;
+                        tongtien += tien;
+
+
+
+
+
+                    }
+
+
+
+                    <tr>
+                        <td colspan="4">&nbsp;</td>
+                        <td colspan="2">
+                            <table class="table table-condensed total-result">
+                                <tr>
+                                    <td>Tổng số giỏ hàng</td>
+                                    <td>@tongtien</td>
+                                </tr>
+                                <tr class="shipping-cost">
+                                    <td>Phí vận chuyển</td>
+                                    <td>Miễn phí</td>
+                                </tr>
+
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="payment-options">
+            <span>
+                <label><input type="checkbox"> Chuyển tiền trực tiếp<br /> qua ngân hàng</label>
+            </span>
+            <span>
+                <label><input type="checkbox">Kiểm tra thanh<br /> toán trực tiếp</label>
+            </span>
+        </div>
+    </div>
+
+</section> <!--/#cart_items-->

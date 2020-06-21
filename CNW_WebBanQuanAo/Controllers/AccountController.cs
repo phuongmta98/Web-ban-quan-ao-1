@@ -22,12 +22,12 @@ namespace CNW_WebBanQuanAo.Controllers
             var result = context.TAIKHOAN.Where(a => a.Username.Equals(acc.Username) &&
                                                       a.Password.Equals(acc.Password)).FirstOrDefault();
 
-            if (result != null && result.isAdmin == 0)
+            if (result != null && result.isAdmin == 0)   // đến trang của người mua 
             {
                 Session["dnhap"] = acc;
 
-                if (Session["dnhap"] != null && Session["CartSession"] != null)
-                {
+                if (Session["dnhap"] != null && Session["CartSession"] != null)  // kiểm tra sesion đăng nhập để lúc mua sản phẩm tiếp theo sau khi đăng nhập thì
+                {                                                                 // hệ thống không bắt đăng nhập lại để thêm sản phẩm tiếp vào giỏ hàng nữa
 
                    
                     return Redirect("https://localhost:44304/Home/Index");
@@ -42,7 +42,7 @@ namespace CNW_WebBanQuanAo.Controllers
             }
             else if (result != null && result.isAdmin == 1)
             {
-                return Redirect("https://localhost:44304/Ad/AdIndex");
+                return Redirect("https://localhost:44304/Ad/AdIndex"); // đến trang admin
             }
 
 
