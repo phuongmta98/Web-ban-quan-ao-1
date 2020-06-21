@@ -30,19 +30,19 @@ namespace CNW_WebBanQuanAo.Controllers
                 {                                                                 // hệ thống không bắt đăng nhập lại để thêm sản phẩm tiếp vào giỏ hàng nữa
 
                    
-                    return Redirect("https://localhost:44304/Home/Index");
+                    return Redirect("https://localhost:44332/Home/Index");
                 }
                 else if (Session["dnhap"] != null && Session["CartSession"] == null)
                 {
                    
-                    return Redirect("https://localhost:44304/Home/Index");
+                    return Redirect("https://localhost:44332/Home/Index");
                 }
 
 
             }
             else if (result != null && result.isAdmin == 1)
             {
-                return Redirect("https://localhost:44304/Ad/AdIndex"); // đến trang admin
+                return Redirect("https://localhost:44332/Ad/AdIndex"); // đến trang admin
             }
 
 
