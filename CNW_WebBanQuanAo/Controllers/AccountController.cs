@@ -16,6 +16,39 @@ namespace CNW_WebBanQuanAo.Controllers
             return View();
         }
 
+        public ActionResult DangNhap(TAIKHOAN acc)
+        {
+
+            var result = context.TAIKHOAN.Where(a => a.Username.Equals(acc.Username) &&
+                                                      a.Password.Equals(acc.Password)).FirstOrDefault();
+
+            if (result != null && result.isAdmin == 0)
+            {
+                Session["dnhap"] = acc;
+
+                if (Session["dnhap"] != null && Session["CartSession"] != null)
+                {
+
+                   
+                    return Redirect("https://localhost:44304/Home/Index");
+                }
+                else if (Session["dnhap"] != null && Session["CartSession"] == null)
+                {
+                   
+                    return Redirect("https://localhost:44304/Home/Index");
+                }
+
+
+            }
+            else if (result != null && result.isAdmin == 1)
+            {
+                return Redirect("https://localhost:44304/Ad/AdIndex");
+            }
+
+
+            return View();
+        }
+
         [HttpPost]
         public ActionResult LoginPost()
         {
