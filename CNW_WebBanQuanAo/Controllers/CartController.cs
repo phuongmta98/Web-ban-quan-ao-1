@@ -56,6 +56,34 @@ namespace CNW_WebBanQuanAo.Controllers
 
         }
 
+        [HttpPost]
+        public ActionResult AddItemCSDL(GIOHANG model)
+        {
+
+            context.GIOHANG.Add(model);
+            context.SaveChanges();
+
+            return Redirect("https://localhost:44304/Home/Index");
+
+
+        }
+
+        public ActionResult RemoveLine(int id)
+        {
+
+            var product = context.SANPHAM.Find(id);
+
+            var cart = (Cart)Session["CartSession"];
+
+            if (cart != null)
+            {
+                cart.RemoveLine(product);
+                //Gán vào session
+                Session["CartSession"] = cart;
+            }
+            return RedirectToAction("Gio");
+        }
+
         public ActionResult Checkout()
         {
             var cart = (Cart)Session["CartSession"];
