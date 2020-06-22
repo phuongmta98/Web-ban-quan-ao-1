@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CNW_WebBanQuanAo.Models;
+using Microsoft.Ajax.Utilities;
 
 namespace CNW_WebBanQuanAo.Areas.Admin.Controllers
 {
@@ -77,9 +78,11 @@ namespace CNW_WebBanQuanAo.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.MaMH = new SelectList(db.MATHANG, "MaMH", "TenMH", sANPHAM.MaMH);
+            //ViewBag.MaMH = new SelectList(db.MATHANG, "MaMH", "TenMH", sANPHAM.MaMH);
+            ViewBag.MaMH = db.MATHANG.ToList();
             ViewBag.MaMau = new SelectList(db.MAU, "MaMau", "TenMau", sANPHAM.MaMau);
-            ViewBag.MaSize = new SelectList(db.SIZE, "MaSize", "MaSize", sANPHAM.MaSize);
+            //ViewBag.MaSize = new SelectList(db.SIZE, "MaSize", "MaSize", sANPHAM.MaSize);
+            ViewBag.MaSize = db.SIZE.ToList();
             return View(sANPHAM);
         }
 
@@ -135,6 +138,14 @@ namespace CNW_WebBanQuanAo.Areas.Admin.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        [HttpPost]
+        public string GetMHURL(int id = 1)
+        {
+            var url = db.MATHANG.Find(id).UrlAnh;
+
+            return url;
         }
     }
 }

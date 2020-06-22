@@ -15,7 +15,6 @@
         {
             GIOHANG = new HashSet<GIOHANG>();
             HOADON = new HashSet<HOADON>();
-            HOADON1 = new HashSet<HOADON>();
             PHANHOI = new HashSet<PHANHOI>();
         }
 
@@ -44,9 +43,6 @@
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HOADON> HOADON { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HOADON> HOADON1 { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PHANHOI> PHANHOI { get; set; }

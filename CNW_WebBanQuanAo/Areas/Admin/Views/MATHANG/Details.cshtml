@@ -1,74 +1,107 @@
 ﻿@model CNW_WebBanQuanAo.Models.MATHANG
 
-@{
-    ViewBag.Title = "Details";
-}
+@{ ViewBag.Title = "Details"; }
 
-<h2>Details</h2>
+<h2>Chi tiết mặt hàng</h2>
 
 <div>
-    <h4>MATHANG</h4>
+    <h4>Mặt hàng</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model[0].NHASANXUAT.TenNSX)
-        </dt>
+    <div class="col-sm-6">
+        <dl class="dl-horizontal">
+            <dt>
+                Nhà sản xuất
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model[0].NHASANXUAT.TenNSX)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.NHASANXUAT.TenNSX)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model[0].NHASANXUAT1.TenNSX)
-        </dt>
+            <dt>
+                Tên mặt hàng
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model[0].NHASANXUAT1.TenNSX)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.TenMH)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model[0].TenMH)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model[0].TenMH)
-        </dd>
+            <dt>
+                Kiểu dáng
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model[0].UrlAnh)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.KieuDang)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model[0].UrlAnh)
-        </dd>
+            <dt>
+                Chất liệu
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model[0].KieuDang)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ChatLieu)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model[0].KieuDang)
-        </dd>
+            <dt>
+                Giá bán
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model[0].ChatLieu)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.GiaBan)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model[0].ChatLieu)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model[0].GiaBan)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model[0].GiaBan)
-        </dd>
-
-    </dl>
+        </dl>
+    </div>
+    <div class="col-sm-6">
+        <img src="~/Content/images/sanpham/@Model.UrlAnh" style="height:200px;" />
+        <p>Ảnh mặt hàng</p>
+    </div>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = model[0].MaMH }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.MaMH }) |
+    @Html.ActionLink("Trở lại danh sách mặt hàng", "Index")
 </p>
+
+<br />
+
+<table class="table">
+    <tr>
+        <th>
+            Tên mặt hàng
+        </th>
+        <th>
+            Màu
+        </th>
+        <th>
+            Size
+        </th>
+        <th>
+            Số lượng
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.SANPHAM)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.MATHANG.TenMH)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.MAU.TenMau)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.SIZE.MaSize)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.SoLuong)
+    </td>
+    <td>
+        @*@Html.ActionLink("Chỉnh sửa", "Edit", "SANPHAM", new { id = item.MaQA }) |*@
+        <a href="/Admin/SANPHAM/Edit/@item.MaQA">Chỉnh sửa</a> |
+        <a href="/Admin/SANPHAM/Details/@item.MaQA">Chi tiết</a> |
+        <a href="/Admin/SANPHAM/Delete/@item.MaQA">Xóa</a>
+    </td>
+</tr>}
+
+</table>

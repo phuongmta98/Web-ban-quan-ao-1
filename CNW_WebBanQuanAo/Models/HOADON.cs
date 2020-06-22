@@ -46,7 +46,5 @@
         public virtual ICollection<GIAODICH> GIAODICH { get; set; }
 
         public virtual TAIKHOAN TAIKHOAN { get; set; }
-
-        public virtual TAIKHOAN TAIKHOAN1 { get; set; }
     }
 }

@@ -22,33 +22,32 @@
             </div>
             <div class="navbar-collapse collapse" style="float:right">
                 <ul class="nav navbar-nav">
-                    <li><a href="">Trở lại trang mua sắm</a></li>
+                    <li><a href="~/Home/Index">Trở lại trang mua sắm</a></li>
                     <li><a href="">Tài khoản <i class="fa fa-user-circle-o" aria-hidden="true"></i></a></li>
                 </ul>
             </div>
         </div>
     </div>
 
-    @*<div class="container body-content">*@
-        <section>
-            <nav>
-                <ul>
-                    <a href=""><li>Quản lý hóa đơn</li></a>
-                    <a href="~/Admin/MATHANG/Index"><li>Mặt hàng</li></a>
-                    <a href=""><li>Danh mục</li></a>
-                    <a href=""><li>Phản hồi từ khách</li></a>
-                </ul>
-            </nav>
-            <article>
-                @RenderBody()
-            </article>
-        </section>
+    <section>
+        <nav>
+            <ul>
+                <a href="~/Admin/Admin/Index"><li>Quản lý hóa đơn</li></a>
+                <a href="~/Admin/MATHANG/Index"><li>Mặt hàng</li></a>
+                <a href="~/Admin/SANPHAM/Index"><li>Sản phẩm</li></a>
+                <a href="~/Admin/NHASANXUAT/Index"><li>Nhà sản xuất</li></a>
+                <a href="~/Admin/PHANHOI/Index"><li>Phản hồi từ khách</li></a>
+            </ul>
+        </nav>
+        <article>
+            @RenderBody()
+        </article>
+    </section>
 
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - E-Shopper</p>
-        </footer>
-    @*</div>*@
+    <hr />
+    <footer>
+        <p>&copy; @DateTime.Now.Year - E-Shopper</p>
+    </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

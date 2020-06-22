@@ -10,109 +10,112 @@ using CNW_WebBanQuanAo.Models;
 
 namespace CNW_WebBanQuanAo.Areas.Admin.Controllers
 {
-    public class MATHANGController : Controller
+    public class PHANHOIController : Controller
     {
         private MyContext db = new MyContext();
 
-        // GET: Admin/MATHANG
+        // GET: Admin/PHANHOI
         public ActionResult Index()
         {
-            var mATHANG = db.MATHANG.Include(m => m.NHASANXUAT);
-            return View(mATHANG.ToList());
+            var pHANHOI = db.PHANHOI.Include(p => p.TAIKHOAN);
+            return View(pHANHOI.ToList());
         }
 
-        // GET: Admin/MATHANG/Details/5
+        // GET: Admin/PHANHOI/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MATHANG mATHANG = db.MATHANG.Find(id);
-            if (mATHANG == null)
+            PHANHOI pHANHOI = db.PHANHOI.Find(id);
+            if (pHANHOI == null)
             {
                 return HttpNotFound();
             }
-            return View(mATHANG);
+            return View(pHANHOI);
         }
 
-        // GET: Admin/MATHANG/Create
+        // GET: Admin/PHANHOI/Create
         public ActionResult Create()
         {
-            ViewBag.MaNSX = new SelectList(db.NHASANXUAT, "MaNSX", "TenNSX");
+            ViewBag.MaKH = new SelectList(db.TAIKHOAN, "Username", "HoTen");
             return View();
         }
 
-        // POST: Admin/MATHANG/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // POST: Admin/PHANHOI/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaMH,TenMH,UrlAnh,KieuDang,ChatLieu,MaNSX,GiaBan")] MATHANG mATHANG)
+        public ActionResult Create([Bind(Include = "MaPH,MaKH,TieuDe,NoiDung,NgayGui")] PHANHOI pHANHOI)
         {
             if (ModelState.IsValid)
             {
-                db.MATHANG.Add(mATHANG);
+                db.PHANHOI.Add(pHANHOI);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.MaNSX = new SelectList(db.NHASANXUAT, "MaNSX", "TenNSX", mATHANG.MaNSX);
-            return View(mATHANG);
+            ViewBag.MaKH = new SelectList(db.TAIKHOAN, "Username", "HoTen", pHANHOI.MaKH);
+            return View(pHANHOI);
         }
 
-        // GET: Admin/MATHANG/Edit/5
+        // GET: Admin/PHANHOI/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MATHANG mATHANG = db.MATHANG.Find(id);
-            if (mATHANG == null)
+            PHANHOI pHANHOI = db.PHANHOI.Find(id);
+            if (pHANHOI == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.MaNSX = new SelectList(db.NHASANXUAT, "MaNSX", "TenNSX", mATHANG.MaNSX);
-            return View(mATHANG);
+            ViewBag.MaKH = new SelectList(db.TAIKHOAN, "Username", "HoTen", pHANHOI.MaKH);
+            return View(pHANHOI);
         }
 
+        // POST: Admin/PHANHOI/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaMH,TenMH,UrlAnh,KieuDang,ChatLieu,MaNSX,GiaBan")] MATHANG mATHANG)
+        public ActionResult Edit([Bind(Include = "MaPH,MaKH,TieuDe,NoiDung,NgayGui")] PHANHOI pHANHOI)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(mATHANG).State = EntityState.Modified;
+                db.Entry(pHANHOI).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.MaNSX = new SelectList(db.NHASANXUAT, "MaNSX", "TenNSX", mATHANG.MaNSX);
-            return View(mATHANG);
+            ViewBag.MaKH = new SelectList(db.TAIKHOAN, "Username", "HoTen", pHANHOI.MaKH);
+            return View(pHANHOI);
         }
 
-        // GET: Admin/MATHANG/Delete/5
+        // GET: Admin/PHANHOI/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MATHANG mATHANG = db.MATHANG.Find(id);
-            if (mATHANG == null)
+            PHANHOI pHANHOI = db.PHANHOI.Find(id);
+            if (pHANHOI == null)
             {
                 return HttpNotFound();
             }
-            return View(mATHANG);
+            return View(pHANHOI);
         }
 
-        // POST: Admin/MATHANG/Delete/5
+        // POST: Admin/PHANHOI/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            MATHANG mATHANG = db.MATHANG.Find(id);
-            db.MATHANG.Remove(mATHANG);
+            PHANHOI pHANHOI = db.PHANHOI.Find(id);
+            db.PHANHOI.Remove(pHANHOI);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

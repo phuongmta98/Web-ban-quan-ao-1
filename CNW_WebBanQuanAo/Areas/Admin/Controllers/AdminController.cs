@@ -15,7 +15,7 @@ namespace CNW_WebBanQuanAo.Areas.Admin.Controllers
         // GET: Admin/Admin
         public ActionResult Index()
         {
-            var hOADON = db.HOADON.Include(m => m.TAIKHOAN).Include(m => m.TAIKHOAN1).Include(m => m.GIAODICH);
+            var hOADON = db.HOADON.Include(m => m.TAIKHOAN).Include(m => m.GIAODICH);
 
             return View(hOADON.ToList());
         }

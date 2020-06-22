@@ -1,50 +1,50 @@
 ﻿@model CNW_WebBanQuanAo.Models.SANPHAM
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Chi tiết sản phẩm";
 }
 
-<h2>Details</h2>
+<h2>Chi tiết sản phẩm</h2>
 
 <div>
-    <h4>SANPHAM</h4>
+    <h4>Sản phẩm</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model[0].MATHANG.TenMH)
+            Tên mặt hàng
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model[0].MATHANG.TenMH)
+            @Html.DisplayFor(model => model.MATHANG.TenMH)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model[0].MAU.TenMau)
+            Màu
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model[0].MAU.TenMau)
+            @Html.DisplayFor(model => model.MAU.TenMau)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model[0].SIZE.MaSize)
+            Size
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model[0].SIZE.MaSize)
+            @Html.DisplayFor(model => model.SIZE.MaSize)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model[0].SoLuong)
+            Số lượng
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model[0].SoLuong)
+            @Html.DisplayFor(model => model.SoLuong)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = model[0].MaQA }) |
-    @Html.ActionLink("Back to List", "Index")
+    <a href="/Admin/SANPHAM/Edit/@Model.MaQA">Chỉnh sửa</a> |
+    <a href="/Admin/MATHANG/Details/@Model.MaMH">Quay lại trang danh sách sản phẩm</a>
 </p>

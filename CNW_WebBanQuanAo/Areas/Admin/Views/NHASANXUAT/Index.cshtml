@@ -4,18 +4,18 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Danh sách nhà sản xuất</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Thêm nhà sản xuất", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model[0].TenNSX)
+            @Html.DisplayNameFor(model => model.TenNSX)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model[0].DiaChi)
+            @Html.DisplayNameFor(model => model.DiaChi)
         </th>
         <th></th>
     </tr>
@@ -29,9 +29,9 @@
             @Html.DisplayFor(modelItem => item.DiaChi)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MaNSX }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MaNSX }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MaNSX })
+            @Html.ActionLink("Chỉnh sửa", "Edit", new { id=item.MaNSX }) |
+            @Html.ActionLink("Chi tiết", "Details", new { id=item.MaNSX }) |
+            @Html.ActionLink("Xóa", "Delete", new { id=item.MaNSX })
         </td>
     </tr>
 }

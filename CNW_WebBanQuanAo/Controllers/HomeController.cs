@@ -66,17 +66,6 @@ namespace CNW_WebBanQuanAo.Controllers
         }
         public ActionResult TestWebService()
         {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44359/");
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-            HttpResponseMessage response = client.GetAsync("api/defaultapi").Result;
-            if (response.IsSuccessStatusCode)
-            {
-                var model = response.Content.ReadAsAsync<IEnumerable<MAU>>().Result;
-                //response.Content.ReadAsStreamAsync
-                return View(model);
-            }
             return View();
         }
     }

@@ -1,66 +1,123 @@
 ﻿@model CNW_WebBanQuanAo.Models.SANPHAM
+@using CNW_WebBanQuanAo.Models
 
-@{
-    ViewBag.Title = "Edit";
-}
+@{ ViewBag.Title = "Edit";
+    List<MATHANG> anhMH = ViewBag.MaMH; }
 
-<h2>Edit</h2>
+<h2>Chỉnh sửa sản phẩm</h2>
 
+
+<h4> @anhMH.Find(m => m.MaMH == 1).UrlAnh</h4>
 
 @using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>SANPHAM</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model[0].MaQA)
+@Html.AntiForgeryToken()
 
-        <div class="form-group">
-            @Html.LabelFor(model => model[0].MaMH, "MaMH", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("MaMH", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model[0].MaMH, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-horizontal">
+                    <h4>Sản phẩm</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.MaQA)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model[0].MaSize, "MaSize", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("MaSize", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model[0].MaSize, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="form-group">
+                                <label class="control-label col-md-3" for="MaMH">Mã mặt hàng</label>
+                                <div class="col-md-9">
+                                    <select class="form-control valid" id="MaMH" name="MaMH" aria-invalid="false">
+                                        @foreach (MATHANG mh in ViewBag.MaMH)
+                                        {
+                                            if (mh.MaMH.Equals(Model.MaMH))
+                                            {
+                        <option selected="selected" value="@mh.MaMH">@mh.TenMH</option>
+ }
+                    else
+                    {
+<option value="@mh.MaMH">@mh.TenMH</option>}
+                }
+                                    </select>
+                                    <span class="field-validation-valid text-danger" data-valmsg-for="MaMH" data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model[0].MaMau, "MaMau", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("MaMau", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model[0].MaMau, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                            <div class="form-group">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model[0].SoLuong, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model[0].SoLuong, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model[0].SoLuong, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
+                                <label class="control-label col-md-3" for="MaSize">Size</label>
+                                <div class="col-md-9">
+                                    <select class="form-control" id="MaSize" name="MaSize">
+                                        @foreach (CNW_WebBanQuanAo.Models.SIZE size in ViewBag.MaSize)
+                                        {
+                                            if (size.MaSize.Equals(Model.MaSize))
+                                            {
+                        <option value="@size.MaSize" selected="selected">@size.MaSize</option>
+ }
+                    else
+                    {
+<option value="@size.MaSize">@size.MaSize</option>
 }
+}
+                                    </select>
+                                    <span class="field-validation-valid text-danger" data-valmsg-for="MaSize" data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.MaMau, "Màu", htmlAttributes: new { @class = "control-label col-md-3" })
+                                <div class="col-md-9">
+                                    @Html.DropDownList("MaMau", null, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.MaMau, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.SoLuong, "Số lượng", htmlAttributes: new { @class = "control-label col-md-3" })
+                                <div class="col-md-9">
+                                    @Html.EditorFor(model => model.SoLuong, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.SoLuong, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-3 col-md-9">
+                                    <input type="submit" value="Save" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <img id="imgMH" src="~/Content/images/sanpham/@Model.MATHANG.UrlAnh" style="width:150px;" />
+                        </div>
+                    </div>
+
+                </div>}
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @*@Html.ActionLink("Quay lại danh sách sản phẩm", "/Admin/MATHANG/Details/")*@
+    <a href="/Admin/MATHANG/Details/@Model.MaMH">Quay lại danh sách sản phẩm</a>
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+<script type="text/javascript">
+        $(document).ready(function () {
+            $("select").change(function () {
+            @*@var idMH = $(this).children("option:selected").val();
+            var url = @anhMH.Find(m => m.MaMH == id).UrlAnh;
+            $("#imgMH").attr('src', '~/Content/images/sanpham/@Model.MATHANG.UrlAnh')*@
+                alert('vao function roi');
+                $.ajax({
+                    url: "~/Controllers/SANPHAMController/GetMHURL/",
+                    type: 'POST',    
+                    data: { id = $(this).children("option:selected").val() },
+                    success: function (result) {
+                        alert(result);
+                        alert('thanh cong')
+                    },
+                    error: function (error) {
+                        alert('loi roi nha')
+                    }
+                })
+            })
+        });
+</script>
 }

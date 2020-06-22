@@ -4,67 +4,67 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<h2>Xóa bỏ mặt hàng</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Bạn chắc chắn muốn bỏ mặt hàng này khỏi dữ liệu của mình chứ?</h3>
 <div>
-    <h4>MATHANG</h4>
+    <h4>Mặt hàng</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model[0].NHASANXUAT.TenNSX)
+            @Html.DisplayNameFor(model => model.NHASANXUAT.TenNSX)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model[0].NHASANXUAT.TenNSX)
+            @Html.DisplayFor(model => model.NHASANXUAT.TenNSX)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model[0].NHASANXUAT1.TenNSX)
+            @Html.DisplayNameFor(model => model.NHASANXUAT1.TenNSX)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model[0].NHASANXUAT1.TenNSX)
+            @Html.DisplayFor(model => model.NHASANXUAT1.TenNSX)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model[0].TenMH)
+            @Html.DisplayNameFor(model => model.TenMH)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model[0].TenMH)
+            @Html.DisplayFor(model => model.TenMH)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model[0].UrlAnh)
+            @Html.DisplayNameFor(model => model.UrlAnh)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model[0].UrlAnh)
+            @Html.DisplayFor(model => model.UrlAnh)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model[0].KieuDang)
+            @Html.DisplayNameFor(model => model.KieuDang)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model[0].KieuDang)
+            @Html.DisplayFor(model => model.KieuDang)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model[0].ChatLieu)
+            @Html.DisplayNameFor(model => model.ChatLieu)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model[0].ChatLieu)
+            @Html.DisplayFor(model => model.ChatLieu)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model[0].GiaBan)
+            @Html.DisplayNameFor(model => model.GiaBan)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model[0].GiaBan)
+            @Html.DisplayFor(model => model.GiaBan)
         </dd>
 
     </dl>
@@ -74,7 +74,7 @@
 
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Trở lại trang danh sách", "Index")
         </div>
     }
 </div>

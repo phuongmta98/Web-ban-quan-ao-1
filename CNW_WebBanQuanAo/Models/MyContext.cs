@@ -60,11 +60,6 @@ namespace CNW_WebBanQuanAo.Models
                 .WithOptional(e => e.NHASANXUAT)
                 .HasForeignKey(e => e.MaNSX);
 
-            modelBuilder.Entity<NHASANXUAT>()
-                .HasMany(e => e.MATHANG1)
-                .WithOptional(e => e.NHASANXUAT1)
-                .HasForeignKey(e => e.MaNSX);
-
             modelBuilder.Entity<PHANHOI>()
                 .Property(e => e.MaKH)
                 .IsFixedLength();
@@ -107,11 +102,6 @@ namespace CNW_WebBanQuanAo.Models
                 .HasMany(e => e.HOADON)
                 .WithOptional(e => e.TAIKHOAN)
                 .HasForeignKey(e => e.MaKH);
-
-            modelBuilder.Entity<TAIKHOAN>()
-                .HasMany(e => e.HOADON1)
-                .WithOptional(e => e.TAIKHOAN1)
-                .HasForeignKey(e => e.NguoiChot);
 
             modelBuilder.Entity<TAIKHOAN>()
                 .HasMany(e => e.PHANHOI)

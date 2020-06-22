@@ -5,13 +5,23 @@
 
 <h2>TestWebService</h2>
 
-@using CNW_WebBanQuanAo.Models;
-@model List<MAU>
+<select id="thuti">
+    <option value="1a">1</option>
+    <option value="2a">2</option>
+    <option value="3a">3</option>
+    <option value="4a">4</option>
+</select>
 
-<ul>
-    @foreach (var item in Model)
-    {
-        <li>@item.TenMau</li>
-    }
+<h2 id="noidung">this is a title</h2>
+<img id="myimg" src="~/Content/images/home/girl2.jpg"/>
 
-</ul>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("select#thuti").change(function () {
+            //alert($(this).children("option:selected").val());
+            $("#myimg").attr('src', '/Content/images/home/girl1.jpg');
+        })
+    })
+
+</script>

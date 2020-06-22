@@ -7,30 +7,27 @@
 <h2>Danh sách mặt hàng</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Thêm mặt hàng mới", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model[0].NHASANXUAT.TenNSX)
+            Tên mặt hàng
         </th>
         <th>
-            @Html.DisplayNameFor(model => model[0].NHASANXUAT1.TenNSX)
+            Nhà sản xuất
         </th>
         <th>
-            @Html.DisplayNameFor(model => model[0].TenMH)
+            Ảnh đại diện
         </th>
         <th>
-            @Html.DisplayNameFor(model => model[0].UrlAnh)
+            Kiểu dáng
         </th>
         <th>
-            @Html.DisplayNameFor(model => model[0].KieuDang)
+            Chất liệu
         </th>
         <th>
-            @Html.DisplayNameFor(model => model[0].ChatLieu)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model[0].GiaBan)
+            Giá bán
         </th>
         <th></th>
     </tr>
@@ -38,16 +35,15 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.NHASANXUAT.TenNSX)
+            <a href="/Admin/MATHANG/Edit/@item.MaMH">@item.TenMH</a>
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.NHASANXUAT1.TenNSX)
+            <a href="/Admin/NHASANXUAT/Details/@item.MaNSX">@item.NHASANXUAT.TenNSX</a>
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.TenMH)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UrlAnh)
+            <a href="/Admin/MATHANG/Edit/@item.MaMH">
+                <img src="~/Content/images/sanpham/@item.UrlAnh" style="width:150px;" />
+            </a> 
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.KieuDang)
@@ -59,9 +55,11 @@
             @Html.DisplayFor(modelItem => item.GiaBan)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MaMH }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MaMH }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MaMH })
+            <a href="/Admin/MATHANG/Edit/@item.MaMH">Chỉnh sửa</a> | 
+            <a href="/Admin/MATHANG/Details/@item.MaMH">Chi tiết</a> |
+            <a href="/Admin/MATHANG/Delete/@item.MaMH">Xóa</a>
+            <hr />
+            <a href="/Admin/SANPHAM/Create">Thêm sản phẩm của mặt hàng này</a>
         </td>
     </tr>
 }

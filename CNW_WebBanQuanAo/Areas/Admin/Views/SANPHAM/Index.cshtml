@@ -4,24 +4,24 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Danh sách chi tiết sản phẩm</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Tạo mới", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model[0].MATHANG.TenMH)
+            @Html.DisplayNameFor(model => model.MATHANG.TenMH)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model[0].MAU.TenMau)
+            @Html.DisplayNameFor(model => model.MAU.TenMau)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model[0].SIZE.MaSize)
+            @Html.DisplayNameFor(model => model.SIZE.MaSize)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model[0].SoLuong)
+            @Html.DisplayNameFor(model => model.SoLuong)
         </th>
         <th></th>
     </tr>
@@ -41,9 +41,9 @@
             @Html.DisplayFor(modelItem => item.SoLuong)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MaQA }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MaQA }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MaQA })
+            @Html.ActionLink("Chỉnh sửa", "Edit", new { id=item.MaQA }) |
+            @Html.ActionLink("Chi tiết", "Details", new { id=item.MaQA }) |
+            @Html.ActionLink("Xóa", "Delete", new { id=item.MaQA })
         </td>
     </tr>
 }

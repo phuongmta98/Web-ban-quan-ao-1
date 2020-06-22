@@ -13,7 +13,6 @@ namespace CNW_WebBanQuanAo.Models
         public NHASANXUAT()
         {
             MATHANG = new HashSet<MATHANG>();
-            MATHANG1 = new HashSet<MATHANG>();
         }
 
         [Key]
@@ -25,8 +24,5 @@ namespace CNW_WebBanQuanAo.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MATHANG> MATHANG { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MATHANG> MATHANG1 { get; set; }
     }
 }

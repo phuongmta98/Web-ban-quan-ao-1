@@ -2,31 +2,32 @@
 @*@model System.Collections.Generic.List<CNW_WebBanQuanAo.Models.CTHOADON>*@
 @model CNW_WebBanQuanAo.Models.HOADON
 
-@{
-    ViewBag.Title = "Details";
-}
+@{ ViewBag.Title = "Details"; }
 
 <h2>Chi tiết hóa đơn <b>@Model.MaHD</b></h2>
+<p>
+    @Html.ActionLink("Quay lại trang danh sách hóa đơn", "Index")
+</p>
 <row>
-    <div class="col-sm-3">
+    <div class="col-sm-2">
         <h5>Tên khách hàng:</h5>
         <h5>Địa chỉ:</h5>
-        <h5>Tài khoản đặt:</h5>
+        <h5>Tên tài khoản:</h5>
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-4">
         <h5>@Model.TenKhach</h5>
         <h5>@Model.DiaChiKhach</h5>
         <h5>@Model.TAIKHOAN.Username </h5>
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-2">
         <h5>Ngày đặt: </h5>
-        <h5>Ngày giao: </h5>
         <h5>Trạng thái: </h5>
+        <h5>Ngày giao: </h5>
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-4">
         <h5>@Model.NgayDat </h5>
-        <h5>@Model.NgayGiao </h5>
         <h5>@Model.TrangThai </h5>
+        <h5>@Model.NgayGiao </h5>
     </div>
 </row>
 
@@ -68,8 +69,8 @@
         @item.SoLuong
     </td>
 </tr>
-    }
+}
 </table>
 
 
-<button onclick="window.location.href='/'">Chốt đơn</button>
+<button onclick="window.location.href='/Admin/Admin/Index'">Chốt đơn</button>

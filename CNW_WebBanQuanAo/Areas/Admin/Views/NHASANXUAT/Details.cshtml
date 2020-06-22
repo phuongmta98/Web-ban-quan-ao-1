@@ -4,31 +4,31 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Chi tiết</h2>
 
 <div>
-    <h4>NHASANXUAT</h4>
+    <h4>Nhà sản xuất</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model[0].TenNSX)
+            @Html.DisplayNameFor(model => model.TenNSX)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model[0].TenNSX)
+            @Html.DisplayFor(model => model.TenNSX)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model[0].DiaChi)
+            @Html.DisplayNameFor(model => model.DiaChi)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model[0].DiaChi)
+            @Html.DisplayFor(model => model.DiaChi)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = model[0].MaNSX }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.MaNSX }) |
+    @Html.ActionLink("Quay lại trang danh sách", "Index")
 </p>
