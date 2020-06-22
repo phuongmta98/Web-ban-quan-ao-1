@@ -28,9 +28,10 @@ namespace CNW_WebBanQuanAo.Controllers
 
         }
 
-        [HttpGet]
-        public ActionResult AddItem(int id)
+       
+        public ActionResult AddItem(string returnURL)
         {
+            int id = Convert.ToInt32(Request.Form["idSanPham"]);
             var product = context.SANPHAM.Find(id);
 
             var cart = (Cart)Session["CartSession"];
@@ -63,7 +64,7 @@ namespace CNW_WebBanQuanAo.Controllers
             context.GIOHANG.Add(model);
             context.SaveChanges();
 
-            return Redirect("https://localhost:44304/Home/Index");
+            return Redirect("https://localhost:44332/Home/Index");
 
 
         }
@@ -116,7 +117,7 @@ namespace CNW_WebBanQuanAo.Controllers
                 }
                 return View(cart);
             }
-            return Redirect("https://localhost:44304/Account/DangNhap");
+            return Redirect("https://localhost:44332/Account/DangNhap");
         }
 
 
@@ -171,7 +172,7 @@ namespace CNW_WebBanQuanAo.Controllers
 
                     cart.Clear();
                     Session["CartSession"] = cart;
-                    return Redirect("https://localhost:44304/Home/Index");
+                    return Redirect("https://localhost:44332/Home/Index");
 
                 }
 
@@ -183,7 +184,7 @@ namespace CNW_WebBanQuanAo.Controllers
             }
             else
             {
-                return Redirect("https://localhost:44304/Account/DangNhap");
+                return Redirect("https://localhost:44332/Account/DangNhap");
             }
 
 
@@ -345,7 +346,7 @@ namespace CNW_WebBanQuanAo.Controllers
 
 
             
-            return Redirect("https://localhost:44304/Home/Index");
+            return Redirect("https://localhost:44332/Home/Index");
 
         }
 
