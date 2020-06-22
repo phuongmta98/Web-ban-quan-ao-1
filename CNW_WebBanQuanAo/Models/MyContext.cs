@@ -25,7 +25,7 @@ namespace CNW_WebBanQuanAo.Models
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<TAIKHOAN> TAIKHOAN { get; set; }
         public virtual DbSet<TTSANPHAM> TTSANPHAM { get; set; }
-        public virtual DbSet<CTHOADON> CTHOADON { get; set; }
+      //  public virtual DbSet<CTHOADON> CTHOADON { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
