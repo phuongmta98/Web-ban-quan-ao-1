@@ -83,36 +83,51 @@ namespace CNW_WebBanQuanAo.Controllers
         {
             return context.TAIKHOAN.Count(x => x.Email == Email) > 0;
         }
-
+        [HttpGet]
+        public ActionResult DangNhap()
+        {
+            return View();
+        }
+        [HttpPost]
         public ActionResult DangNhap(TAIKHOAN acc)
         {
 
             var result = context.TAIKHOAN.Where(a => a.Username.Equals(acc.Username) &&
                                                       a.Password.Equals(acc.Password)).FirstOrDefault();
 
-            if (result != null && result.isAdmin == 0)   // đến trang của người mua 
+
+            if (ModelState.IsValid)
             {
-                Session["dnhap"] = acc;
-
-                if (Session["dnhap"] != null && Session["CartSession"] != null)  // kiểm tra sesion đăng nhập để lúc mua sản phẩm tiếp theo sau khi đăng nhập thì
-                {                                                                 // hệ thống không bắt đăng nhập lại để thêm sản phẩm tiếp vào giỏ hàng nữa
-
-                   
-                    return Redirect("https://localhost:44332/Home/Index");
-                }
-                else if (Session["dnhap"] != null && Session["CartSession"] == null)
+                if (result != null && result.isAdmin == 0)   // đến trang của người mua 
                 {
-                   
-                    return Redirect("https://localhost:44332/Home/Index");
+                    Session["dnhap"] = acc;
+
+                    if (Session["dnhap"] != null && Session["CartSession"] != null)  // kiểm tra sesion đăng nhập để lúc mua sản phẩm tiếp theo sau khi đăng nhập thì
+                    {                                                                 // hệ thống không bắt đăng nhập lại để thêm sản phẩm tiếp vào giỏ hàng nữa
+
+
+                        return Redirect("https://localhost:44332/Home/Index");
+                    }
+                    else if (Session["dnhap"] != null && Session["CartSession"] == null)
+                    {
+
+                        return Redirect("https://localhost:44332/Home/Index");
+                    }
+
+
                 }
+                else if (result != null && result.isAdmin == 1)
+                {
+                    return Redirect("https://localhost:44332/Admin/Admin/Index"); // đến trang admin
+                }
+                else
+                {
 
-
+                    // return RedirectToAction("DangNhap", "Account");
+                   
+                    ModelState.AddModelError("", " Đăng nhập không đúng ");
+                }
             }
-            else if (result != null && result.isAdmin == 1)
-            {
-                return Redirect("https://localhost:44332/Ad/AdIndex"); // đến trang admin
-            }
-
 
             return View();
         }
@@ -147,8 +162,9 @@ namespace CNW_WebBanQuanAo.Controllers
                     Session["LoggedinUser"] = user[0];
                 }
             }
-
+          
             return RedirectToAction("Index");
+
         }
 
         [HttpGet]
