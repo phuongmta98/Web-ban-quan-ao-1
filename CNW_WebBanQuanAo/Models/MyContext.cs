@@ -116,5 +116,9 @@ namespace CNW_WebBanQuanAo.Models
             modelBuilder.Entity<TTSANPHAM>()
                 .Property(e => e.GiaBan);
         }
+
+        public System.Data.Entity.DbSet<CNW_WebBanQuanAo.Models.RegisterModel> RegisterModels { get; set; }
+
+        public System.Data.Entity.DbSet<CNW_WebBanQuanAo.Models.LoginModel> LoginModels { get; set; }
     }
 }

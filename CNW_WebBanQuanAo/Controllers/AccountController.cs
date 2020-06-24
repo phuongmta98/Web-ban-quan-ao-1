@@ -83,13 +83,20 @@ namespace CNW_WebBanQuanAo.Controllers
         {
             return context.TAIKHOAN.Count(x => x.Email == Email) > 0;
         }
-
+        [HttpGet]
+        public ActionResult DangNhap()
+        {
+            return View();
+        }
+        [HttpPost]
         public ActionResult DangNhap(TAIKHOAN acc)
         {
 
             var result = context.TAIKHOAN.Where(a => a.Username.Equals(acc.Username) &&
                                                       a.Password.Equals(acc.Password)).FirstOrDefault();
 
+            if (ModelState.IsValid)
+            {
             if (result != null && result.isAdmin == 0)   // đến trang của người mua 
             {
                 Session["dnhap"] = acc;
@@ -110,10 +117,16 @@ namespace CNW_WebBanQuanAo.Controllers
             }
             else if (result != null && result.isAdmin == 1)
             {
-                return Redirect("https://localhost:44332/Ad/AdIndex"); // đến trang admin
+                return Redirect("https://localhost:44332/Admin/Admin/Index"); // đến trang admin
+            }
+            else 
+            {
+                    ModelState.AddModelError("", " Đăng nhập không đúng");
+            }
             }
 
 
+            //
             return View();
         }
 
