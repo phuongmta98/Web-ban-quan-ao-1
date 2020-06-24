@@ -121,12 +121,12 @@ namespace CNW_WebBanQuanAo.Controllers
             }
             else 
             {
-                    ModelState.AddModelError("", " Đăng nhập sai!");
+                    ModelState.AddModelError("", " Đăng nhập không đúng");
             }
             }
 
 
-            
+            //
             return View();
         }
 
